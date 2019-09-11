@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    li{
+        width: 50px;
+        height: 50px;
+    }
+    </style>
+</head>
+
+<body>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+</body>
+
+</html>
+<script>
+    /* 
+        检测数据类型
+            *** 
+            Object.prototype.toString.call()  括号中可以写值
+                functions getType(a){
+                    let str = Object.prototype.toString.call(a);  //获取数据类型字符串
+                    //再从中截取需要的字符串
+                    let str2 = str.slice(8,str.length-1) // 首字母都是大写，按需求自己转换
+                    return str2.toLowerCase() //转为小写
+                }
+            getType(1[]{}null...)
+            ***
+            ary.sort((b-a))
+        向数组末尾添加
+                ary.splice(ary.length-1,0,100)  // 这么写代表在最后一项前面添加了一个100
+                ary.splice(ary.length,0,100) //添加到了最后一项
+                ary[ary.length] = 100;  //ary.length-1代表最后一项，ary.length代表最后一项后面
+    
+        转成布尔类型
+            0 Nan ''  null undefined   这5个转成布尔值是false ， 其他都是true
+    
+        数据类型比较
+            字符串和引用数据类型比较，把引用数据类型用toString转成字符串，然后再比较
+            {} []  这两种比的都是地址  [] == []  false  地址不一样
+            false == []  先转成number类型，再比较
+            1 == []  数字和引用数据类型比较，  先把数据类型用toString转成字符串，再用Number转成数字类型  然后比较
+    
+        定时器
+            怎么结合 setTimeout 和 递归 实现 setInterval
+            - function timer(){
+                console.log(666)
+                setTimeout(()=>timer(),1000)
+            }
+            timer()
+    
+        累积运算（任意数求和）
+        -   function sum(){
+                let num = 0;
+                for(let i=0;i<arguments.length;i++){
+                    let temp = arguments[i]
+                    if(typeof temp === 'number' && !isNaN(temp)){
+                        num += temp*1
+                    }
+                }
+                return sum
+            }
+            let total = sum(10,20,'30','珠峰','40')
+            console.log(total)
+    
+        四位验证码
+            
+        - function getStr() {
+            let str = 'qeretyjkjnbvdswq2134565768ijhnbvcxdsarety';
+            let s = ''
+            while (s.length < 4) {
+                if (s.indexOf[n] == -1) {
+                    s += str[n]
+                }
+            }
+            return s
+            }
+            console.log(getStr())
+
+        12345
+        - let str = 'http://www.zhufengpeixun.com/stu/?name=zxt&age=28&sex=0#teacher';
+            function queryURLParameter(url) {
+                let str2 = str.split('?')[1]; //name=zxt&age=28&sex=0#teacher';
+                let ary = str2.split('#')
+                let hash = ary[1] //teacher
+                let str3 = ary[0] //name=zxt&age=28&sex=0
+                let ary2 = str3.split('&')  //['name=zxt','age=28','sex=0']
+                let obj = {}
+                ary2.forEach(item => {
+                    let arr = item.split('=')
+                    obj[arr[0]] = arr[1]
+                    })
+                    return obj
+                }
+                console.log(queryURLParameter())
+
+
+        let lis = document.querySelectorAll('li')
+            for(let i=0;i<lis.length;i++){
+                let a = i%2 ?'red':'green';
+                lis[i].style.background = a;
+                lis[i].mybg = a
+                lis[i].onmouseenter = function(){
+                    this.style.background = 'gold'
+                }
+                lis[i].onmouseleave = function(){
+                    this.style.background = this.mybg
+                }
+                lis[i].onclick = function(){
+                    alert(`我是第${i+1}个`)
+                }
+                }
+            // onmouseenter  鼠标浸入
+            // onmouseleave  鼠标离开
+    */
+
+
+/* 
+ //把本地历史区的代码提交到远程仓库 （ gitHub  gitLab  码云 ）
+  //首先得有远程仓库
+  //把本地仓库和远程仓库建立起链接  git remote add 桥梁(origin)  远程仓库地址
+  //git push  把本地代码提交到远程  首次push时，需按照提示进行提交
+
+  //提交代码的流程  git add . ---> git commit -m '备注'  --->git push
+
+  //若多人合作 那么提交 git push 之前，一般都会要求先 git pull  下拉一下
+  //git pull 是把远程的代码下拉到本机
+
+
+  //第二种建仓库套路
+  - 现在远程建立一个仓库，然后通过git clone 远程仓库地址   的方式吧远程仓库克隆到本地，然后再去进行代码开发；
+
+   //把本地历史区的代码提交到远程仓库 （ gitHub  gitLab  码云 ）
+  //首先得有远程仓库
+  //把本地仓库和远程仓库建立起链接  git remote add 桥梁(origin)  远程仓库地址
+  //git push  把本地代码提交到远程  首次push时，需按照提示进行提交
+
+  //提交代码的流程  git add . ---> git commit -m '备注'  --->git push
+
+  //若多人合作 那么提交 git push 之前，一般都会要求先 git pull  下拉一下
+  //git pull 是把远程的代码下拉到本机
+
+
+  //第二种建仓库套路
+  - 现在远程建立一个仓库，然后通过git clone 远程仓库地址   的方式吧远程仓库克隆到本地，然后再去进行代码开发；
+
+
+   //把本地历史区的代码提交到远程仓库 （ gitHub  gitLab  码云 ）
+  //首先得有远程仓库
+  //把本地仓库和远程仓库建立起链接  git remote add 桥梁(origin)  远程仓库地址
+  //git push  把本地代码提交到远程  首次push时，需按照提示进行提交
+
+  //提交代码的流程  git add . ---> git commit -m '备注'  --->git push
+
+  //若多人合作 那么提交 git push 之前，一般都会要求先 git pull  下拉一下
+  //git pull 是把远程的代码下拉到本机
+
+
+  //第二种建仓库套路
+  - 现在远程建立一个仓库，然后通过git clone 远程仓库地址   的方式吧远程仓库克隆到本地，然后再去进行代码开发；
+
+ */
+</script>
