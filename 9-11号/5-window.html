@@ -9,6 +9,21 @@
 </body>
 </html>
 <script>
+    // console.log(a,b)
+    // let a = 12;
+    // const b =13;
+    //let 和 const 不存在变量提升
+    //let 和 const 声明的变量必须在生命的下方使用 
+    //在上边用 会有 暂时性死区 的错误
+    //var let const  三者有什么区别
+        // var 可以重复声明  let 和 const 不可以
+        // var 存在变量提升  let 和 const 没有
+        // var 声明的变量  会在window 下增加一个对应的属性   let 和 const 不会
 
-
+        function f(){
+            console.log(a)
+            var a = 12;
+            console.log(a);
+        }
+        f()
 </script>
