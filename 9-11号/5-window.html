@@ -19,6 +19,7 @@
         // var 可以重复声明  let 和 const 不可以
         // var 存在变量提升  let 和 const 没有
         // var 声明的变量  会在window 下增加一个对应的属性   let 和 const 不会
+        // var 不识别块级作用域，  let 和 const 可以识别块级作用域
 
         function f(){
             console.log(a)
@@ -26,5 +27,5 @@
             console.log(a);
         }
         f()
-    ''
+
 </script>
