@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button>1Emmm</button>
+    <button>2Emmm</button>
+    <button>3Emmm</button>
+    <button>4Emmm</button>
+    <button>5Emmm</button> 
+</body>
+</html>
+<script>
+    var btns = document.querySelectorAll('button');
+    // for(var i = 0; i < btns.length ; i++){
+    //     btns[i].onclick = (function (n) {
+    //         return function () {
+    //             alert(`我是第${n+1}个button`)
+    //         }
+    //     })(i)
+    // }
+
+    // [...btns].forEach((item,index)=>{
+    //     item.onclick = function(){
+    //         alert(`我是第${index+1}个button`)
+    //     }
+    // })
+
+    for(let i = 0; i < btns.length ; i++){
+        btns[i].onclick = function(){
+            alert(`我是第${i+1}行`)
+        }
+    }
+</script>

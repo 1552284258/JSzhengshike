@@ -5,11 +5,117 @@
     <title>Document</title>
 </head>
 <body>
-    
+<button>111</button>
+<button>222</button>
+<button>333</button>
+<button>444</button>    
 </body>
 </html>
 <script>
 /* 
-    
+    箭头函数中，没有 this 和 arguments；  箭头函数是把这两者当做了普通变量对待
+        箭头函数中的this 是指向了上级作用域的this，arguments 也是一样；
+        
+
+    this  就是函数的执行主体
+
+    事件绑定中的 this 就是当前绑定的元素
+    自执行函数中的this  是window
+    定时器中的this 也是 window
+
+    this 的指向是谁，我们可以通过看点的方式来确定；函数执行 点 前面是谁 this 就是谁，没 点 就是window
 */
+    // var btns = document.querySelectorAll('button');
+    // [...btns].forEach(item=>{
+    //     item.onclick = function(){
+    //         console.log(this)
+    //     }
+    // });
+
+    // (function(){
+    //     console.log(1,this);
+        
+    // })();
+    // ~function(){
+    //     console.log(2,this);
+        
+    // }();
+    // !function(){
+    //     console.log(3,this);
+        
+    // }();
+
+    // var obj = {
+    //     age:100,
+    //     f(){
+    //         console.log(this);
+    //     },
+    //     f2(){
+
+    //     },
+    //     f3:()=>{
+    //         console.log(this);
+    //     },
+    // };
+    // obj.f(); //obj
+    // var fn = obj.f;
+    // fn(); //window
+    // var ary = [1,2,3,fn];
+    // ary[3](); //ary.3()
+    // obj.f3();
+
+
+    // function fn2(){
+    //     return ()=>{
+    //         console.log(arguments)
+    //     }
+    // }
+    // fn2(1,2,3,4,5)()
+
+    // setTimeout(function(){
+    //     console.log(this); //window
+        
+    // },2000)
+
+    // var num = 1;
+    // var obj ={
+    //     num:10,
+    //     fn:(function(){
+    //         this.num *= 3;
+    //         return function(){
+    //             num +=2;
+    //             this.num++;
+    //         }
+    //     })(),
+    // };
+    // var f = obj.fn;
+    // f();
+    // obj.fn()
+    // console.log(num,obj.num)
+
+
+    // var obj = {
+    //     name:'珠峰',
+    //     age :9,
+    // };
+    // (function(obj){ // 这个obj是私有变量，只是空间地址和全局的obj一样。
+    //     obj.name='中国',
+    //     obj = {},//给私有变量重新赋值了一个新地址，和全局的obj没关系了
+    //     obj.age=5000,
+    //     console.log(obj.age);//5000
+    // })(obj);
+    // console.log(obj.name);// 中国
+    
+
+    // var a = {
+    // x:1
+    // };
+    // var b = a;
+    // b.y = a = { // 点 的优先级是最高的，那么就先给b增加一个y属性，值暂时为null，然后给y赋了一个qqq：123.再把a的地                  址改变了 变成 {qqq：123}
+    //     qqq:123
+    // };
+    // console.log(a.x,b.x);
+    
+
+    
 </script>

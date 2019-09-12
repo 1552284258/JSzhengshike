@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    #box{
+        width:100px;
+        height: 100px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id='box' style='background:red'></div>
+    <button>红</button>
+    <button>绿</button>
+    <button>蓝</button>
+</body>
+<script>
+    var box=document.querySelector('#box');
+    var btnList=document.querySelectorAll('button');
+    var colorAry=['red','green','blue'];
+    
+    // for(let i=0;i<btnList.length;i++){
+    //     btnList[i].onclick=function(){
+    //         box.style.background=colorAry[i];
+    //     }
+    // }
+
+        //注意return 以及 传参
+    // for(var i=0;i<btnList.length;i++){
+    //     btnList[i].onclick = (function(i){
+    //         return function(){
+    //             box.style.background=colorAry[i]
+    //         }
+    //     })(i)
+    // }
+
+    //因为要点 按钮 所以要把btnList类数组 转成 数组
+    [...btnList].forEach((item,index)=>{
+        item.onclick = function(){
+            box.style.background=colorAry[index]
+        }
+    })
+
+</script>
