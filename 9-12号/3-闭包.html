@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
 <script>
-/* 
-    闭包   就是一个变量的保护机制
-*/
+    /* 
+        闭包()   就是一个变量的保护机制
+            闭包首先是一个不销毁的作用域，用来保护变量、用来存储值
+            利用闭包，我们可以实现模块开发
+        闭包不能多用，用多了容易引起内容泄漏
+        
+    */
+    var obj = (function () {
+        var a = 100;
+        var f = function () {
+            console.log(a);
+        }
+        return {
+            a, //属性名和属性值，是一个单词的时候，我们可以简写成一个
+            f: f,
+        }
+    })()
 </script>
