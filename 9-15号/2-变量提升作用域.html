@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
 <script>
     /* 
@@ -44,13 +47,49 @@
         function f(){3}
         console.log(f)  //ƒ f(){2}
 
+
+        var n = 5;
+        function a(n){ //形参没传值，默认传undefined
+            n++;
+            n=10;
+            b();
+            function b(){
+                n++;
+                alert(n);
+            };
+        }
+        a() //11 
+        alert(n)  //5
+
+        var i =1;
+        function fn(i){
+            return function (n){
+                console.log(n+(++i))
+            }
+        }
+        var f = fn(2)
+        f(3)  //6
+        fn(5)(6)   //12
+        fn(3)(2)   //6
+        f(4)   //8
+
+        let i = 1;
+        let fn = function (n) {
+            i *= 2;
+            return function (m) {
+                n++;
+                i += n + m;
+                console.log(i);
+            }
+        };
+        let f = fn(2);
+        f(3);  //8
+        fn(2)(3);  //22
+        f(4);  //30
+        f(5);  //40
     */
 
-    console.log(f)  //ƒ f(){3}
-    function f(){1}
-    console.log(f)  //ƒ f(){3}
-    var f=function(){2}
-    console.log(f)  //ƒ f(){2}
-    function f(){3}
-    console.log(f)  //ƒ f(){2}
+
+
+
 </script>
