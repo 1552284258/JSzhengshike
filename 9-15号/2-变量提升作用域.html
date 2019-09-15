@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+        变量提升：
+            在代码执行之前，JS会把代码中带有var 和 function 关键之的变量，提前声明。
+            带var的只声明不定义
+            带function 的是声明加定义   
+            在 {} (if   for   while )中的function是只声明不定义
+            赋值的右边是没有变量提升的
+            return 后面也没有
+
+            let const 暂时性死区   在声明之前，绝对不能调用
+
+        栈内存： 存储值类型  提供代码运行环境
+        堆内存： 存储引用数据类型
+
+        作用域：  全局作用域   私有作用域  
+            全局作用域：页面一打开就会形成一个全局作用域
+                全局变量： 在全局声明的变量
+            私有作用域：函数执行会形成一个私有做用域
+                私有变量： 形参 私有作用域声明的变量
+            块级作用域：if  for  while  的那个大括号{}
+                let const 声明的变量可以识别出块级作用域
+
+            上级作用域： 针对私有作用域，跟函数在哪里形成的有关系，跟函数在哪执行没有关系。
+
+            作用域链：变量的一种查找机制，在某个作用域有某个变量，这个变量对应的值是谁，先看是不是当前作用域的私有变量，不是的话就向上级作用域查找，再不是，接着向上查，直到window，没有的话就报错
+
+
+        console.log(f)  //ƒ f(){3}
+        function f(){1}
+        console.log(f)  //ƒ f(){3}
+        var f=function(){2}
+        console.log(f)  //ƒ f(){2}
+        function f(){3}
+        console.log(f)  //ƒ f(){2}
+
+    */
+
+    console.log(f)  //ƒ f(){3}
+    function f(){1}
+    console.log(f)  //ƒ f(){3}
+    var f=function(){2}
+    console.log(f)  //ƒ f(){2}
+    function f(){3}
+    console.log(f)  //ƒ f(){2}
+</script>
