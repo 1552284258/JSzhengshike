@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    #box{
+        width: 100px;
+        height:100px;
+    }
+    </style>
+</head>
+<body>
+    <div id='box' style='background:red'></div>
+    <button>红</button>
+    <button>绿</button>
+    <button>蓝</button>
+</body>
+<script>
+    var box=document.querySelector('#box');
+    var btnList=document.querySelectorAll('button');
+    var colorAry=['red','green','blue'];
+    // for(var i=0;i<btnList.length;i++){
+    //     btnList[i].onclick=function(){
+    //         box.style.background=colorAry[i];
+    //     }
+    // }
+
+    // for(var i=0;i<btnList.length;i++){
+    //     (function(n){
+    //         btnList[i].onclick=function(){
+    //         box.style.background=colorAry[n];
+    //     }
+    //     })(i)
+        
+    // }
+</script>
+</html>
+
+
