@@ -5,11 +5,11 @@
     <title>Document</title>
 </head>
 <body>
-    <button>1Emmm</button>
-    <button>2Emmm</button>
-    <button>3Emmm</button>
-    <button>4Emmm</button>
-    <button>5Emmm</button> 
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <button>5</button> 
 </body>
 </html>
 <script>
@@ -22,15 +22,23 @@
     //     })(i)
     // }
 
-    // [...btns].forEach((item,index)=>{
+    // btns.forEach((item,index)=>{
     //     item.onclick = function(){
-    //         alert(`我是第${index+1}个button`)
+    //         alert(/* `我是第${ */index/* +1}个button` */)
     //     }
     // })
 
-    for(let i = 0; i < btns.length ; i++){
-        btns[i].onclick = function(){
-            alert(`我是第${i+1}行`)
-        }
+    // for(let i = 0; i < btns.length ; i++){
+    //     btns[i].onclick = function(){
+    //         alert(`我是第${i+1}行`)
+    //     }
+    // }
+
+    for(var i=0;i<btns.length;i++){
+        btns[i].onclick = (function(i){
+            return function(){
+                alert(i)
+            }
+        })(i)
     }
 </script>
