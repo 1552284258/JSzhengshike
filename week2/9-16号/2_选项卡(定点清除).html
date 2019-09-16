@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:400px;
+}
+#box div{
+    width:400px;
+    height:200px;
+    border:1px solid #000;
+    display:none;
+}
+#box div.show{
+    display:block;
+}
+.active{
+    background: yellow;
+}
+
+
+</style>
+</head>
+<body>
+    <div id="box">
+        <button class="active">按钮一</button>
+        <button >按钮二</button>
+        <button>按钮三</button>
+        <div class="show">内容一</div>
+        <div>内容二</div>
+        <div>内容三</div>
+    </div>
+<script>
+    /*
+
+        1.给每个按钮添加点击事件函数
+        2.让刚才的按钮不亮，让当前点击的亮
+        3.点第一个按钮就对应第一个div，以此类推
+    */
+
+    const btns = document.querySelectorAll('button');
+    const divs = document.querySelectorAll('#box div');
+
+    let btn = btns[0]; //把第1个按钮存起来
+
+    for(var i=0,len=btns.length;i<len;i++){
+        btns[i].index = i;
+        btns[i].onclick = function(){
+
+            if(this === btn)return;//如果点击的按钮和上一次按钮是一样的，那么就终止下面的代码执行
+
+            // alert(1);
+            //把上一个按钮清除，添加这次按钮的class
+            btn.className = ''; //把刚才按钮的class清空
+
+            //把btn对应的div的class清掉
+            divs[btn.index].className = '';//通过下标获取的元素btn.index是一个数字
+
+            /*
+                *this*是点击的这个*按钮*
+
+                btns[this.index]  也是按钮
+
+            */
+            // this.className = 'active';
+            btns[this.index].className = 'active';
+            divs[this.index].className = 'show'; 
+
+            // console.log(btn,this);
+            /*
+                在点击结束的时候，把当前的按钮赋值给btn，为了下次点击按钮的时候使用
+                这一次的this，就作为下一次的上一个按钮
+            */
+            btn = this;//btn就从第一个按钮变成了第3个按钮
+        }
+    }
+
+    
+</script>
+</body>
+</html>
