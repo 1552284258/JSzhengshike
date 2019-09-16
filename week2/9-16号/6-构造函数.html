@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<SCRIPT>
+
+    /* 
+        
+    */
+    function factory(name='123', age=20, sex=1,cb) { //默认值
+        cb && cb(); //callback 缩写,有cb的话就执行cb
+        var obj = {
+            name, age, sex,
+            eat() { },
+            play() { },
+        }
+        return obj
+    }
+    var per11 = factory('xiaomin', 10, 1);
+    // var per2 = factory(null,null,null)
+    // console.log(factory);// name:null age:null sex:null,只有在实参是undefined的时候，才用默认值
+    
+
+    function Person(name,age,sex){
+        this.name=name;
+        this.age=age;
+        this.sex=sex;
+        this.eat=function(){};
+        this.play=function(){};
+        return 123
+    }
+    var per2 = Person('zf',100,0) //undefined
+    var per22 =new Person('zf',100,0) //per22 是 person 的一个实例
+    //new 执行函数的时候，函数内部的this都是指向了一个堆内存，函数执行完成之后，又把this返出去
+    //若写了返回值，但是返回的是一个值类型，那么默认返回仍然是this
+    //若返回值是个引用数据类型，则返回值就默认是这个引用数据类型了
+    console.log(per2) // 123
+    console.log(per22) 
+
+    //es6 的箭头函数是不能通过new的方式执行
+    //es6 创造类的方式 是通过 class创造的
+    // var FN2 = ()=>{
+    //     this.name= 111;
+    // }
+    // console.log(new FN2); //报错
+    
+    class FN3{
+        constructor(name,age){
+            this.name=name;
+            this.age=age;
+        }
+    }
+    var f3 = new FN3('xiaoming',20)
+    console.log(f3);
+
+</SCRIPT>
