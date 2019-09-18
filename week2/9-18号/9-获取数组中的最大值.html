@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取最大值</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    ary = [12312,42,421,125214,532,4324];
+    Math.max(123,5,24,645,32,132,32321,213)
+    
+    Math.max(...ary)
+
+    Math.max.apply(Math,ary)//利用apply可以把集合散乱的传给前边的函数
+
+    ary.sort((a,b)=>a-b)[0]
+
+    //假设法
+
+    var str = 'aeradgdsgfsryshsf';
+    var arr = str.split('');
+    console.log(arr);
+
+    arr.sort((a,b)=>{
+        return a.localeCompare(b)
+    })
+
+    console.log(arr.sort().join(''))
+
+    console.log(str.split('').sort().join(''))
+
+    
+</script>

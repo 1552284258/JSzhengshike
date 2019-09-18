@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+        bind 用法和call 一样，但是bind的返回值是一个新函数；新函数执行时 fn才会执行，fn中的this才会被改变成obj
+        var f = fn.bind(obj,6,6,6,6)
+        f 中的this 不会再发生任何改变了，再使用call apply 也不好使
+
+        call 和 apply 都是让函数立即执行，但是bind是返回了一个新函数
+     */
+     function fn() {
+        console.log([...arguments]);
+        console.log(this)
+        console.log('------------>')
+        return 23333
+    }
+    var obj = {
+        a: 12,
+        b: 13,
+    }
+
+    fn.call(obj,1,2,3,4)
+    var f = fn.bind(obj,6,6,6,6)//f 执行 让 fn 执行 并且把6,6,6,6 传给fn；fn中的this 指向obj
+                                //把6，6，6，6 理解成 f 的默认参数；再给f 传递参数的时候，                      会把传递的参数补在默认参数的后方
+    console.log(f)
+
+        //手写bind  未考虑new
+    Function.prototype.myBind = function myCall(context, ...arg) {
+        //this ----> fn
+        var that = this;
+        return function(...ary){
+            return that.apply(context,arg.concat(ary))
+            
+        }
+    }
+    var f2 = fn.myBind(obj,6,6,6,6)
+</script>
