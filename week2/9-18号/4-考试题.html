@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    
+    Number.prototype.plus=function(a){
+        return this+a
+    }
+    Number.prototype.minus=function(a){
+        return this-a
+    }
+    let n =10;
+    let m = n.plus(10).minus(5) //链式调用 
+    console.log(m);// 15
+    // 链式调用要保证前边函数的返回结果可以调用到后边的函数
+
+    
+</script>

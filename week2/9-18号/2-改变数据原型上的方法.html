@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+
+     */
+
+     //内置类的原型上的方法可以被修改，但是不能被重构；
+
+    // Array.prototype.pop=function(){
+    //      console.log(666);
+    // }
+    // var ary = [1,2,3,4];
+    // ary.pop()
+    // console.log(ary);
+
+
+        //数组去重几种方法
+    var ary = [1,2,3,3,1,2,4,2,5,3,11,5,7,7,9,9,123,34,23,65,17,1,73]
+        //1 去重还排序
+        // this 都是当前类的实例；
+        // Array.prototype.unique=function(){
+        //     var obj = {};
+        //     this.forEach(item=>{
+        //         obj[item]=item;
+        //     })
+        //     this.length = 0;
+        //     for(var k in obj){
+        //         this.push(obj[k])
+        //     }
+        // }
+
+        // //2 去重
+        // Array.prototype.unique=function(){
+        // let arr = [...new Set(this)]
+        // this.length = 0
+        // arr.forEach(item=>this.push(item))
+        // }
+
+        //3 去重
+        Array.prototype.unique=function(){
+            var obj = {}
+            for(var i =0;i<this.length;i++){
+                if(obj.hasOwnProperty(this[i])){
+                    this.splice(i,1);
+                    i--;
+                }else{
+                    obj[this[i]] = this[i]
+                }
+            }
+        }
+
+    ary.unique();
+    console.log(ary);
+
+</script>
