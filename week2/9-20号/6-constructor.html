@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    function getType(temp) {
+        var str = temp.constructor.toString();//toString 是函数上的方法
+        return str.slice(9, str.indexOf('(')).toLowerCase()
+    }
+    // getType([])
+    // console.log()
+
+
+    //原型重构只针对自定义类
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    Person.prototype.eat = function () {
+        console.log('老子吃火锅，你吃火锅底料');
+    }
+    var p = new Person('sss', 100)
+
+    Person.prototype = {
+        eat() {
+            console.log('老子吃泡面，你喝泡面汤汤');
+        },
+        play() {
+            console.log('玩游戏');
+        }
+    }
+    var p1 = new Person('xxx', 20)
+    getType(p1);
+
+
+
+
+    
+</script>

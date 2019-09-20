@@ -44,9 +44,10 @@
     }
     var p = new Person('cxk',18)
     
+    
     function myNew(...arg){
          //      Person,name,age
-         var obj = {};
+        var obj = {};
         var Constructor = arg.shift();
         obj.__proto__ = Constructor.prototype;
         let res = Constructor.apply(obj,arg);

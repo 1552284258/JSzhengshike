@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //实现一个判断数据类型的方法  getType()
+    Object.prototype.getType = function (temp) {
+        let str = this.constructor.toString()
+        str = str.slice(9, str.indexOf('(')).toLowerCase()
+        return str
+    }
+
+
+    //myPop  myPush  返回值是改变的原数组
+    var ary = [1, 2, 3, 4, 5]
+    Array.prototype.myPop = function () {
+        this.length--
+        return this
+    }
+    Array.prototype.myPush = function (...ary) {
+        var len = ary.length;
+        for (var i = 0; i < len; i++) {
+            this[this.length] = ary[i]
+        }
+        return this
+    }
+    ary.myPop().myPush(6,6,6).myPop().myPush(4,5)
+
+
+    //myReverse 等同于  reverse 
+    //pop删除最后一项，然后返回删除的，找个接收的push进去  试一试
+    Array.prototype.myReverse = function(){
+        for(var i =0;i<this.length/2;i++){
+            var temp = this[i];
+            this[i]=this[this.length-1-i]
+            this[this.length-1-i] = temp
+        }
+        return this
+    }
+    ary.myReverse()
+
+
+    //去重
+    Array.prototype.myUnique = function(){
+        var arr = [...(new Set(this))]
+        this.length = 0;
+        this.push(...arr)
+        return this
+    }
+
+    Array.prototype.myUnique = function(){
+        var obj = {};
+        for(var i = 0; i< this.length;i++){
+            var temp = this[i];
+            if(obj.hasOwnProperty(temp)){
+                this.splice(i,1)
+                i-- //小心数组塌陷
+            }else{
+                obj[temp] = temp;
+            }
+        }
+    }
+
+
+
+</script>
