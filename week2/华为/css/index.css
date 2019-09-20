@@ -1,0 +1,67 @@
+a{
+    color: #999;
+}
+.md{
+    width: 1226px;
+    margin: auto;
+    height: 100%;
+}
+.sort{
+    height: 50px;
+    border: 1px solid #bbbbbb;
+    margin: auto;
+    box-sizing: border-box;
+    
+}
+.sort>li{
+    float:left;
+    height:50px;
+    line-height: 50px;
+    position: relative;
+    /* cursor:pointer;小手样式*/
+}
+.sort .sort_0{
+    margin-left: 50px;
+}
+.sort_1,.sort_2,.sort_3{
+    margin-left: 30px;
+    
+}
+.sort .sort_icon_1{
+    position: absolute;
+    left: 52px;
+    top: 19px;
+    display: block;
+    width: 8px;
+    height: 10px;
+    background: transparent url(https://res8.vmallres.com/20190808/images/echannel/icon/icon1.png) scroll no-repeat;
+    background-position: 0 -70px;/* -90上边亮  -110下边亮 得先设置一个默认的排序，然后给亮度*/
+}
+.sort .sort_icon_2{
+    position: absolute;
+    left: 30px;
+    top: 19px;
+    display: block;
+    width: 8px;
+    height: 10px;
+    background: transparent url(https://res8.vmallres.com/20190808/images/echannel/icon/icon1.png) scroll no-repeat;
+    background-position: 0 -70px; /* -90上边亮  -110下边亮  得先设置一个默认的排序，然后给亮度*/
+}
+.sort .sort_icon_3{
+    position: absolute;
+    left: 30px;
+    top: 21px;
+    display: block;
+    width: 8px;
+    height: 10px;
+    background: transparent url(https://res8.vmallres.com/20190808/images/echannel/icon/icon1.png) scroll no-repeat;
+    background-position: 0 -29px;/* -52亮 */
+}
+.sort_white{
+    height: 20px;
+    display: block;
+}
+.content{
+    border: 1px solid #bbbbbb;
+    height: 200px;
+}
