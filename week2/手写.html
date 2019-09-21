@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <pre>
+    //加、减
+    Number.prototype.plus = function (a) {
+        return this + a
+    }
+    Number.prototype.minus = function (a) {
+        return this - a
+    }
+    let n = 10;
+    let m = n.plus(10).minus(5)
+
+    //--------------------------------------------------------------------------------------------
+
+    //实现call  手写
+    function fn() {
+        console.log(this)
+    }
+    var obj = {
+        a: 12,
+        b: 13
+    }
+    Function.prototype.myCall = function (context, ...arg) {
+        context = context || window;
+        let a = Symbol();
+        context[a] = this;
+        let res = context[a](...arg);
+        delete context[a];
+        return res
+    }
+    fn.myCall(obj, 6, 6, 6) //让fn执行，fn中的this指向obj，把6,6,6传给fn
+
+    //--------------------------------------------------------------------------------------------
+
+    //实现apply  手写
+    function fn() {
+        console.log(this)
+    }
+    var obj = {
+        a: 12,
+        b: 13
+    }
+    Function.prototype.myApply = function (context, arg) {
+        arg = arg || [];
+        context = context || window
+        let a = Symbol()
+        context[a] = this
+        let res = context[a](...arg)
+        delete context[a]
+        return res
+    }
+    fn.myApply(obj, [5, 6, 7, 8]) //让fn执行，fn中的this指向obj，把5, 6, 7, 8传给fn
+
+    //--------------------------------------------------------------------------------------------
+
+    //实现bind  手写
+    function fn() {
+        console.log(this)
+    }
+    var obj = {
+        a: 12,
+        b: 13
+    }
+
+    Function.prototype.myBind = function (context, ...arg) {
+        var than = this
+        return function (...ary) {
+            return that.applyy(context, arg.concat(ary))
+        }
+    }
+    var f = fn.muBind(obj, 6, 6, 6)
+
+    //--------------------------------------------------------------------------------------------
+
+    //实现hasOwnProperty  手写
+    Object.prototype.hasPubProperty = function (key) {
+        //(1)
+        if (key in this && !this.hasOwnProperty(key)) {
+            return ture
+        } else {
+            return false
+        }
+
+        //(2)
+        return (key in this && !this.hasOwnProperty(key) ? ture : false)
+    }
+
+    //--------------------------------------------------------------------------------------------
+
+    //实现new  手写
+    function Person(name, age) {
+        this.name = name;
+        this.age = age
+    }
+    function myNew(classN, ...arg) {
+        var obj = {};
+        obj.__proto__ = classN.prototype
+        var res = classN.call(obj, ...arg)
+        return typeof res === 'object' ? res : obj
+    }
+    var p = myNew(Person, 'zf', 10)
+
+    //--------------------------------------------------------------------------------------------
+
+    //实现instanceof  手写
+    function myInstan(temp, classN) {
+        let str = typeof temp
+        if (str !== 'object' && str !== 'function') return false  //不是对象，也不是函数，就证明是值类型，这时候return false
+        var left = temp.__proto__
+        var right = classN.call(obj, ...arg)
+        while (left) {
+            if (left === right) return true
+            left = left.__proto__
+        }
+        return false
+    }
+
+    //--------------------------------------------------------------------------------------------
+
+    //实现一个判断数据类型的方法  getType
+    Object.prototype.getType = function (temp) {
+        let str = this.constructor.toString()
+        str = str.slice(9, str.indexOf('(')).toLowerCase()
+        return str
+    }
+
+    //--------------------------------------------------------------------------------------------
+
+    //实现pop push  手写
+    var ary = [1, 2, 3, 4, 5]
+    Array.prototype.myPop = function () {
+        this.length--;
+        return this
+    }
+    Array.prototype.myPush = functioni(...arg){
+        var l = ary.length
+        for (var i = 0; i < l; i++) {
+            this[this.length] = arg[i]
+        }
+        return this
+    }
+    ary.myPop().myPush(6, 6, 6).myPop().myPush(4, 5)
+
+    //--------------------------------------------------------------------------------------------
+
+    //实现reverse 手写
+    Array.prototype.myReverse = function () {
+        for (var i = 0; i < this.length; i++) {
+            var temp = this[i]
+            this[i] = this[this.length - 1 - i]
+            this[this.length - 1 - i] = temp
+        }
+        return this
+    }
+
+    //--------------------------------------------------------------------------------------------
+
+    //小例子 一秒输出一次谁会什么
+    class Person {
+        constructor(name, skill) {
+            this.name = name;
+            this.skill = skill;
+        }
+        say() {
+            for (let i = 0; i < this.skill.length; i++) {
+                setTimeout(() => {
+                    console.log(`${this.name} 会 ${this.skill[i]}`)
+                }, 1000 * (i + 1))
+            }
+        }
+    }
+
+    //--------------------------------------------------------------------------------------------
+
+    //用面向对象的方法写选项卡
+    class Tab {
+        constructor(idSelector) {
+            this.box = document.querySelector('idSelector')
+            this.tabs = this.box.getElementsByClassName('tab')
+            this.bodys = this.box.getElementsByClassName('body')
+            this.mapBind()
+        }
+        mapBind = function () {
+            for (let i = 0; i < this.tabs.length; i++) {
+                this.tabs[i].onclick = () => {
+                    this.clearClass()
+                    this.tabs[i].calssName = 'tab current'
+                    this.bodys[i].cassName = 'body current'
+                }
+            }
+        }
+        clearClass = function () {
+            for (var i = 0; i < this.tabs.length; i++) {
+                this.tabs[i].className = 'tab'
+                this.bodys[i].className = 'body'
+            }
+        }
+    }
+
+    //--------------------------------------------------------------------------------------------
+
+    //数组去重 
+    Array.prototype.myUnique = function () {
+        var arr = [...(new Set(this))]
+        this.length = 0
+        this.push(...arg)
+        return this
+    }
+
+    Array.prototype.myUnique = function () {
+        var obj = {}
+        for (var i = 0; i < this.length; i++) {
+            var temp = this[i]
+            if (obj.hasOwnProperty(temp)) {
+                this.splice(i, 1)
+                i--
+            } else {
+                obj[temp] = temp
+            }
+        }
+    }
+
+    //--------------------------------------------------------------------------------------------
+
+    //选项卡 添加删除类型版
+    for (let i = 0; i < tabs.length; i++) {
+        tabs[i].onclick = function () {
+            for (let j = 0; j < tabs.length; j++) {
+                tabs[i].classList.remove('curren')
+                bodys[i].classList.remove('curren')
+            }
+            this.classList.add('current')
+            bodys.classList.add('current')
+        }
+    }
+
+    //--------------------------------------------------------------------------------------------
+
+
+</pre>
+</body>
+
+</html>
+<script>
+
+    //加、减
+    Number.prototype.plus = function (a) {
+        return this + a
+    }
+    Number.prototype.minus = function (a) {
+        return this - a
+    }
+    let n = 10;
+    let m = n.plus(10).minus(5)
+
+    //--------------------------------------------------------------------------------------------
+
+    //实现call  手写
+    function fn() {
+        console.log(this)
+    }
+    var obj = {
+        a: 12,
+        b: 13
+    }
+    Function.prototype.myCall = function (context, ...arg) {
+        context = context || window;
+        let a = Symbol();
+        context[a] = this;
+        let res = context[a](...arg);
+        delete context[a];
+        return res
+    }
+    fn.myCall(obj, 6, 6, 6) //让fn执行，fn中的this指向obj，把6,6,6传给fn
+
+    //--------------------------------------------------------------------------------------------
+
+    //实现apply  手写
+    function fn() {
+        console.log(this)
+    }
+    var obj = {
+        a: 12,
+        b: 13
+    }
+    Function.prototype.myApply = function (context, arg) {
+        arg = arg || [];
+        context = context || window
+        let a = Symbol()
+        context[a] = this
+        let res = context[a](...arg)
+        delete context[a]
+        return res
+    }
+    fn.myApply(obj, [5, 6, 7, 8]) //让fn执行，fn中的this指向obj，把5, 6, 7, 8传给fn
+
+    //--------------------------------------------------------------------------------------------
+
+    //实现bind  手写
+    function fn() {
+        console.log(this)
+    }
+    var obj = {
+        a: 12,
+        b: 13
+    }
+
+    Function.prototype.myBind = function (context, ...arg) {
+        var than = this
+        return function (...ary) {
+            return that.applyy(context, arg.concat(ary))
+        }
+    }
+    var f = fn.muBind(obj, 6, 6, 6)
+
+    //--------------------------------------------------------------------------------------------
+
+    //实现hasOwnProperty  手写
+    Object.prototype.hasPubProperty = function (key) {
+        //(1)
+        if (key in this && !this.hasOwnProperty(key)) {
+            return ture
+        } else {
+            return false
+        }
+
+        //(2)
+        return (key in this && !this.hasOwnProperty(key) ? ture : false)
+    }
+
+    //--------------------------------------------------------------------------------------------
+
+    //实现new  手写
+    function Person(name, age) {
+        this.name = name;
+        this.age = age
+    }
+    function myNew(classN, ...arg) {
+        var obj = {};
+        obj.__proto__ = classN.prototype
+        var res = classN.call(obj, ...arg)
+        return typeof res === 'object' ? res : obj
+    }
+    var p = myNew(Person, 'zf', 10)
+
+    //--------------------------------------------------------------------------------------------
+
+    //实现instanceof  手写
+    function myInstan(temp, classN) {
+        let str = typeof temp
+        if (str !== 'object' && str !== 'function') return false  //不是对象，也不是函数，就证明是值类型，这时候return false
+        var left = temp.__proto__
+        var right = classN.call(obj, ...arg)
+        while (left) {
+            if (left === right) return true
+            left = left.__proto__
+        }
+        return false
+    }
+
+    //--------------------------------------------------------------------------------------------
+
+    //实现一个判断数据类型的方法  getType
+    Object.prototype.getType = function (temp) {
+        let str = this.constructor.toString()
+        str = str.slice(9, str.indexOf('(')).toLowerCase()
+        return str
+    }
+
+    //--------------------------------------------------------------------------------------------
+
+    //实现pop push  手写
+    var ary = [1, 2, 3, 4, 5]
+    Array.prototype.myPop = function () {
+        this.length--;
+        return this
+    }
+    Array.prototype.myPush = functioni(...arg){
+        var l = ary.length
+        for (var i = 0; i < l; i++) {
+            this[this.length] = arg[i]
+        }
+        return this
+    }
+    ary.myPop().myPush(6, 6, 6).myPop().myPush(4, 5)
+
+    //--------------------------------------------------------------------------------------------
+
+    //实现reverse 手写
+    Array.prototype.myReverse = function () {
+        for (var i = 0; i < this.length; i++) {
+            var temp = this[i]
+            this[i] = this[this.length - 1 - i]
+            this[this.length - 1 - i] = temp
+        }
+        return this
+    }
+
+    //--------------------------------------------------------------------------------------------
+
+    //小例子 一秒输出一次谁会什么
+    class Person {
+        constructor(name, skill) {
+            this.name = name;
+            this.skill = skill;
+        }
+        say() {
+            for (let i = 0; i < this.skill.length; i++) {
+                setTimeout(() => {
+                    console.log(`${this.name} 会 ${this.skill[i]}`)
+                }, 1000 * (i + 1))
+            }
+        }
+    }
+
+    //--------------------------------------------------------------------------------------------
+
+    //用面向对象的方法写选项卡
+    class Tab {
+        constructor(idSelector) {
+            this.box = document.querySelector('idSelector')
+            this.tabs = this.box.getElementsByClassName('tab')
+            this.bodys = this.box.getElementsByClassName('body')
+            this.mapBind()
+        }
+        mapBind = function () {
+            for (let i = 0; i < this.tabs.length; i++) {
+                this.tabs[i].onclick = () => {
+                    this.clearClass()
+                    this.tabs[i].calssName = 'tab current'
+                    this.bodys[i].cassName = 'body current'
+                }
+            }
+        }
+        clearClass = function () {
+            for (var i = 0; i < this.tabs.length; i++) {
+                this.tabs[i].className = 'tab'
+                this.bodys[i].className = 'body'
+            }
+        }
+    }
+
+    //--------------------------------------------------------------------------------------------
+
+    //数组去重 
+    Array.prototype.myUnique = function () {
+        var arr = [...(new Set(this))]
+        this.length = 0
+        this.push(...arg)
+        return this
+    }
+
+    Array.prototype.myUnique = function () {
+        var obj = {}
+        for (var i = 0; i < this.length; i++) {
+            var temp = this[i]
+            if (obj.hasOwnProperty(temp)) {
+                this.splice(i, 1)
+                i--
+            } else {
+                obj[temp] = temp
+            }
+        }
+    }
+
+    //--------------------------------------------------------------------------------------------
+
+    //选项卡 添加删除类型版
+    for (let i = 0; i < tabs.length; i++) {
+            tabs[i].onclick = function () {
+                for (let j = 0; j < tabs.length; j++) {
+                    tabs[i].classList.remove('curren')
+                    bodys[i].classList.remove('curren')
+                }
+                this.classList.add('current')
+                bodys.classList.add('current')
+            }
+        }
+</script>

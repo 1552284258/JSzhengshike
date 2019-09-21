@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function fn() {
+        console.log(arguments)
+        console.log(this)
+        console.log('-------------------->')
+    }
+    var obj = {
+        a:12
+    }
+    fn.call(obj,1,2,3)
+    fn.apply(obj,[4,5,6])
+
+    //小瑕疵：没考虑不传函数，直接传6,6,6 或者 传 null
+    Function.prototyp.myApply = function(context=window,arg=[]){
+        var a = Symbol();
+        context[a]=this;
+        var res  = context[a](...arg)
+        delete context[a]
+        return res
+    }
+
+</script>
