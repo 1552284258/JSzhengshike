@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    //类 的  继承  封装(高内聚，低耦合)   多态
+// function Person(name,age){
+//     this.name = name;
+//     this.age = age;
+// }
+// Person.prototype = Object.creat(Animal.prototype)
+
+
+//class继承
+    class Parent{
+        constructor(){
+            this.name = 'parent'
+            this.age= 100
+        }
+        say(){
+            console.log('hello parent')
+        }
+        static qqq = 245; //static 静态属性
+    }
+
+    class Child extends Parent{ //child 继承 parent 的 属性(公有的  私有的 ...)
+        constructor(){
+            super();// 写了extends 和 constructor 则必写super();super其实就是Parent的constructor
+            this.money = 100;
+        }
+        play(){
+            console.log('child play')
+        }
+    }
+
+    var xm = new Child()
+    console.log(xm);
+    
+
+
+
+//creat
+    // function creat(M){
+    //     function F (){}
+    //     F.prototype = M
+    //     return new F()
+    // }
+</script>

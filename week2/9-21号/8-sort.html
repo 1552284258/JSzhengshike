@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="nameBtn">姓名</button>
+    <button id="ageBtn">年龄</button>
+
+    <ul id="box">
+        <li>
+            <strong>姓名：xm</strong>;
+            <strong>年龄：10</strong>
+        </li>
+    </ul>
+</body>
+
+</html>
+<script>
+    var ary = [
+        { name: '小王', age: 20 },
+        { name: '小赵', age: 21 },
+        { name: '小范', age: 22 },
+        { name: '小蒋', age: 23 },
+    ]
+    //实现点击排序
+    //思路：点击先排序数组，然后重新渲染数组
+    function render() {
+        var str = '';
+        ary.forEach(item => {
+            let { name, age } = item; // 对象的解构赋值
+            str += `<li>
+                <strong>姓名：${name}</strong> |
+                <strong>年龄：${age}</strong>   
+                </li>`
+        })
+        box.innerHTML = str;
+    }
+    render();   
+    nameBtn.flat = ageBtn.flat = 1
+    nameBtn.onclick = function () {
+        this.flat *= -1
+        ary.sort((a,b) =>{
+            return a.name.localeCompare(b.name) * this.flat
+        })
+        render()
+    }
+    ageBtn.onclick = function () {
+        this.flat *= -1
+        ary.sort((a, b) =>{
+            return (a.age-b.age)* this.flat
+        })
+        render()
+    }
+
+
+
+    /*
+        对象的解构赋值：
+            var obj = {name:234,age:12,}
+            var {age} = obj;  //age 救生衣一个变量，对应的值是 对象中 age 对应的属性值；
+            var {age,name} //
+
+            var {aaa,ddd} = {aaa:123,bbb:456,ccc:789}  //相当于声明了一个变量aaa  它的值是123, ddd相当于声明了一下，但是没有赋值，随意是undefined；
+    */
+</script>

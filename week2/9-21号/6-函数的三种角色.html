@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /* 
+        function f(){}
+        
+        普通函数
+        构造函数
+        普通对象
+    */
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    Person();
+    new Person()
+    Person.age = 100;
+
+    //类数组转数组的方法
+    function fn() {
+        Array.from(arguments);
+        [...arguments];
+        [].slice.call(arguments, 0); //通过数组，调用slice，其他的调不到slice
+        ({}).toString.call(''); //
+    }
+    fn(1,2,3,4,5)
+
+</script>
