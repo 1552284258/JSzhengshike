@@ -1,12 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
+<script>
+    /* 
+        面向对象
+        面向过程
+
+        单例  高级单例   工厂模式   函数模式   原型模式
+
+        每一个函数(类)都是一个天生自带的属性prototype，指向自己的原型对象
+        每一个对象(实例)都有一个天生自带的属性__proto__, 指向所属类的原型对象
+            new出来的全是实例
+        每一个默认的原型对象，都有一个天生自带的属性constructor 指向对应的构造函数本身
+
+        原型链：属性的查找机制，现在自己身上查找对应的属性，没有的话，就会__proto__查找所属类的原型
+
+        function 声明类
+        函数的三种角色   普通函数  构造函数  普通对象
+        Array.from()   //把类数组转成数组
+
+        class 类名{  //class  声明的只能new执行
+            constructor(形参){
+                函数体
+            }
+            say(){}
+            static fn() //类名.fn = function(){}
+        } 
+
+    */
+
+    // class Person {
+    //     //私有的
+    //     constructor(name) {
+    //         this.name = name;
+    //     }
+    //     //公有的
+    //     say() {
+    //         console.log(`my name is ${this.name}`)
+    //     }
+    //     //静态的
+    //     static fn() {
+    //         console.log('静态属性')
+    //     }
+    //     static fn2() {
+    //         console.log('静态方法二')
+    //     }
+    // }
+    // var p = new Person('zf')
+    // class Child extends Person {
+    //     constructor(name) {
+    //         super(); //目前写法，必须用，而且必须用在最上面
+    //         this.name = name;
+    //     }
+    // }
+    // var c = new Child('xxm')
+
+    // function Man() {
+
+    // }
+    // function boy() {
+    //     Man.call(this)
+    // }
+    // boy.prototype = Objcect.creat(Man.prototype)
+    //boy.prototype.__proto__ = Man.prototype
+
+
+    //在数组的原型上，补一个方法del(n) 可以随即删除n项，返回值是删除的项组成的新数组
+    // var ary = [1, 2, 3, 4, 5, 6]
+    // Array.prototype.del = function (n) {
+    //     if(n>this.length){
+    //         throw new Error('参数错误')
+    //     }
+    //     let arr = []
+    //     for (let i = 0; i < n; i++) {
+    //         let m = Math.round(Math.random() * (this.length-1))
+    //         arr = arr.concat(this.splice(m,1))
+    //     }
+    //     return arr
+    // }
+    // console.log(ary.del(2)) //随机删除
+
+
+    //在字符串的原型上补一个方法 url.getParam() 该方法可以获取url中的参数部分，及hash部分
+    //location.hre 可以获取地址栏的地址
+
+    String.prototype.getParam(key){
+
+    }
+    let str = 'https://baidu.com?a=12&bb=13&_c=14#hello'
+
+        /* 
+        let obj = {}
+        this.split('?')[1].split('#')[0].split('&').forEach(item => {
+            let ary = item.split('=')
+            obj[ary[0]] = ary[1]
+        })
+        obj.hash = this.split('#')[1]
+        return key ? obj[key] : obj
+         */
+</script>
