@@ -83,9 +83,12 @@
        return Math.max(...this)
        return Math.max.apply(Math,this)
     }
+
+    
+    //ary.reduce((prev,next) => prev+next)
     Array.prototype.average = function(){
         //this 是要操作的数组
-        return this.reduce(...this)/this.length
+
         return eval(this.join('+'))/this.length
     }
 </script>

@@ -2,7 +2,7 @@ a{
     color: #999;
 }
 .md{
-    width: 1226px;
+    width: 1200px;
     margin: auto;
     height: 100%;
 }
@@ -61,7 +61,77 @@ a{
     height: 20px;
     display: block;
 }
-.content{
+/* .content{
     border: 1px solid #bbbbbb;
-    height: 200px;
+} */
+
+
+.phone_box{
+    float:left;
+    width: 220px;
+    height: 360px;
+    box-sizing: border-box;
+    margin-right: 25px;
+    margin-bottom: 25px;
+    border: 1px solid #bbb;
+    position: relative;
+
+}
+.img_box img{
+    width: 180px;
+    height: 180px;
+    margin: 20px auto;
+}
+.img_box img:hover{
+    cursor:pointer;
+}
+.img_box{
+    text-align: center;
+}
+.phone_name,.phone_money{
+    text-align: center;
+}
+.bot_box{
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    height: 40;
+    width: 100%;
+    border-top:1px solid #bbb;
+    box-sizing: border-box;
+}
+.phone_left{
+    border-right: 1px solid #bbb;
+    cursor:pointer;
+    color: red;
+}
+.phone_left:hover{
+    background: red;
+    color: #fff;
+}
+.phone_right,.phone_left{
+    height: 40px;
+    line-height: 40px;
+    width: 110px;
+    text-align: center;
+}
+.phone_box:hover{
+    border: 1px solid red;
+}
+.phone_box .phone_name{
+    height: 30px;
+    line-height: 30px;
+}
+.phone_box .phone_name:hover{
+    color: red;
+    cursor:pointer;
+}
+.phone_box .phone_money{
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    color: red;
+}
+.phone_box:nth-child(5n){
+    margin-right: 0;
 }

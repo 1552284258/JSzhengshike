@@ -17,18 +17,33 @@
         - 每一个默认的原型对象上都有一个 constructor属性，指向对应构造函数本身
     */
     
-    function Person(name, age) {
-        this.name = name;
-        this.age = age;
-    }
-    Person.prototype.eat=function(){
-        console.log('吃');
-    }
-    Person.prototype.play=function(){
-        console.log('玩');
-    }
-    var p1 = new Person('xxx',20);
-    var p1 = new Person('qqq',22);
+    // function Person(name, age) {
+    //     this.name = name;
+    //     this.age = age;
+    // }
+    // Person.prototype.eat=function(){
+    //     console.log('吃');
+    // }
+    // Person.prototype.play=function(){
+    //     console.log('玩');
+    // }
+    // var p1 = new Person('xxx',20);
+    // var p1 = new Person('qqq',22);
     //普通函数的执行过程：开辟一个作用域，形参赋值，变量提升，代码从上到下执行
     //new 执行时，开辟一个作用域，形参赋值，变量提升，开辟一个堆内存，把this的指向改成这个堆内存，然后代码从上到下执行
+
+    //4.编写getParam方法实现如下的效果
+    let url="http://www.zhufengpeixun.cn/?lx=1&from=wx";
+    String.prototype.getParam=function(n){
+        return this.slice(this.indexOf(n)+(n.length+1))
+    }
+    console.log(url.getParam("from"));//=>"wx"
+
+    //5、封装一个方法，average;可以求出平均数
+    //ary.reduce((prev,next) => prev+next)
+    var ary = [2,3,4,6,2,4,5];
+    Array.prototype.average = function(){
+        return this.reduce((a,b)=>a+b) / this.length
+    }
+    var res = ary.average();// 结果是这几个数的平均数
 </script>
