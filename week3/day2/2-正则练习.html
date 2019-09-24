@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="inp" placeholder="手机号">
+    <input type="text" id="inp" placeholder="QQ或163邮箱">
+    <button id="btn">提交</button>
+</body>
+
+</html>
+<script>
+    btn.onclick = function () {
+        var str = inp.value
+        var reg = /^1([3-9])(\d{9})$/
+        var flat = reg.test(str)
+        flat ? alert('好的') : alert('滚')
+    }
+
+
+</script>

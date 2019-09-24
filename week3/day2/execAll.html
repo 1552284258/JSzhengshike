@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // var str = '珠峰2019培训2020';
+    // var reg = /\d+/g;
+    // RegExp.prototype.execAll=function(str){
+    //     //一直用exec捕获，直到结果是null的时候停止捕获
+    //     let res = this.exec(str)
+    //     var arr = [];
+    //     while(res){
+    //         arr.push(res)
+    //         res = this.exec(str)
+    //     }
+    //     return arr
+    // }
+    // console.log(reg.execAll(str))
+
+//----------------------------------------------------
+    //正则没有g的情况下
+    // var str = '珠峰2019培训2020';
+    // var reg = /\d+/;
+    RegExp.prototype.execAll=function(str){
+        let _this = this;
+        if(!_this.global){
+            _this = eval(_this+'g')
+        }
+
+        let res = _this.exec(str)
+        var arr = [];
+        while(res){
+            arr.push(res)
+            res = _this.exec(str)
+        }
+        return arr
+    }
+    // console.log(reg.execAll(str))
+
+
+
+    var str = 'http://www.zhufengpeixun.cn/?lx=1&from=wx&b=12&c=13'
+
+        function getParam(url){
+            var reg = /([^?=&#]+)=([^?=&#]+)/g
+            let obj = {}
+            reg.execAll(url).forEach(a=>{
+                obj[a[1]]= a[2]
+            })
+            return obj
+        }
+        console.log(getParam(str));  // {lx:1,from:wx,b:12,c:13}
+ 
+</script>
