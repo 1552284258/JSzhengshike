@@ -19,7 +19,7 @@ margin: auto;
     user-select: none;
 }
 .md header span:first-child{
-    cursor: default;
+    cursor: default; /* 取消小手，变回箭头 */
 }
 
 img{

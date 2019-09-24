@@ -17,7 +17,6 @@ let commentBtn = document.querySelector('#commentBtn')
 function render(ary) {
     let str = '';
     ary.forEach(item => {
-
         let { img, title, price, num } = item
         str += `<li>
         <div id="imgBox">
