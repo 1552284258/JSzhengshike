@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    function render(template, data) {
+        return template.replace(/\{\{(\w*)\}\}/g, function ($0, $1) {
+            return data[$1] ? data[$1] : '未知'
+        })
+    }
+    let template = '我是{{name}},年龄{{age}},性别{{sex}}'
+    let data = {
+        name: '茅十八',
+        age: 18
+    }
+    render(template, data)
+
+
+    function timeFormate(template,time) {
+        template = template || '今天是{{0}}年{{1}}月{{2}}日-{{3}}时{{4}}分{{5}}秒'
+        time = time ? new Date(time) : new Date;
+        let ary = [time.getFullYear(), time.getMonth() + 1, time.getDate(), time.getHours(), time.getMinutes(), time.getSeconds()]
+        return template.replace(/\{\{(\w*)\}\}/g,function(a,b){
+            return ary[b]
+        })
+    }
+    timeFormate()
+</script>

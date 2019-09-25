@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="inp">
+</body>
+
+</html>
+<script>
+    // replace   替换；
+    '2019-02-03'.replace('-', '/').replace('-', '/')
+    var res = '2019-02-03'.replace(/-/g, '/')
+    // console.log(res)
+
+    var str = 'asdfg12345lkjbh23456sdvb';
+    // var res = str.replace(/\d+/g,'-')
+    // console.log(str.replace(/\d+/g, '-'))
+
+    //去首尾空格，中间不去
+    var str = '    asdfg   asdf    ';
+    // console.log(str.replace(/^ +| +$/g, ''))
+
+    inp.oninput = function () {
+        var str = this.value
+        // var res = str.replace(/^ +/g,'')  // 开头禁止输入空格
+        // var res = str.replace(/\D+/g,'')  //只可以输入非数字的
+        var res = str.replace(/[^\d ]/g, '') //只可以输入数字和空格
+
+        this.value = res
+    }
+
+
+    var str = 'sdFGHjKLlkjHasdwaGHJD';
+    var reg = str.replace(/([a-zA-Z])/g, function ($1) {
+        if ($1.toLowerCase() === $1) {
+            return $1.toUpperCase()
+        }
+        return $1.toLowerCase()
+    })
+    console.log(reg, 123);
+
+    var str = 'sdFGHjKLlkjHasdwaGHJD';
+    var res = str.replace(/([a-z]*)([A-Z]*)/g, function ($0, $1, $2) {
+        return $1.toUpperCase() + $2.toLowerCase()
+    })
+    console.log(res, 456)
+
+    var res = str.replace(/([a-z]+)(\d)/g, '$1==$2') //$1 $2 $3 ... 分别代表第一个小分组，第二个小分组...
+
+    var str = 'zf2019zf2020'
+    var res = str.replace(/([a-z]+)(\d+)/g, function () {
+        // replace 的回调函数的实参结果 跟 match 和 exec 获取的类似
+        // 返回的字符串 是由匹配到的内容被return值  替换之后的新字符串
+        // 回调函数的执行次数跟 正则匹配到的次数一样
+        // console.log(arguments)
+
+    })
+
+
+    var str2 = '';
+    for (var i = 0; i < str.length; i++) {
+        let a = str[i]
+        if (a.toLowerCase() === a) { //变量a对应的字符是一个小写字母
+            str2 += a.toUpperCase();
+        } else {
+            str2 += a.toLowerCase();
+        }
+    }
+    // console.log(str, str2);
+
+
+    function getParam(url) {
+        var reg = /([^?=&]+)=([^?=&#]+)/g
+        let obj = {}
+        url.replace(reg, function ($0, $1, $2) {
+            obj[$1] = $2
+        })
+        let h = url.match(/#(.+)/) ? url.match(/#(.+)/)[1] : null
+        obj.hash = h;
+        return obj
+    }
+    var str = 'http://www.zhufengpeixun.cn/?lx=1&from=wx&b=12&c=13#qqqq';
+    console.log(getParam(str));
+</script>

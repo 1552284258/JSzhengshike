@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //改成驼峰命名
+    // var s1 = 'get-element-by-id'
+    // s1.replace(/-(\w)/g,function(a,b){
+    //     return b.toUpperCase()
+    // })
+
+    var str = 'fegdrthtyugkilkjhgfdfghjhgfdsdfffghsdfgfdfdfffddadaqwfdg'
+
+    function getMax(str) {
+        let obj = {}
+        for (let i = 0; i < str.length; i++) {
+            //把字符串中的每一项都当做属性名存储起来，
+            //存储之前，先看对象中有没有这个属性，
+            //没有的话我们就给obj增加一个对应的属性，属性值是 1
+            //有的话，就在它现在值的基础上 加 1
+            if (obj.hasOwnProperty(str[i])) {
+                obj[str[i]] += 1
+            } else {
+                obj[str[i]] = 1
+            }
+        }
+        console.log(obj)
+
+        var val = Object.values(obj)
+        var key = Object.keys(obj)
+        var m = Math.max(...val)
+        var n = key[val.indexOf(m)]
+        return {
+            n,
+            m
+        }
+
+        // let key = '',
+        //     num = 0;
+        // for (var k in obj) {
+        //     if (obj[k] > num) {
+        //         key = k;
+        //         num = obj[k]
+        //     }
+        // }
+        // return{
+        //     key,num
+        // }
+    }
+    // getMax(str)
+
+
+    var reg = /(\d+)\1/ //  \1 代表前面的小分组匹配的内容  \2代表第二个小分组匹配的内容......
+    var str = '123123'
+    // console.log(reg.exec(str));
+
+    var reg = /([a-z]+)(\d+)\1\2/
+    var str = 'zf2019zf2019'
+    // console.log(reg.exec(str),666);
+    
+    var str = 'fegdrthtyugkilkeweedjhgfdqffgeyeewhewefghrreeddqdsedwqgteqweefdfdfffddatdaqqwfwqwdg'
+    function getMax2(str) {
+        str = str.split('').sort().join('') //把字符串进行排序
+        // console.log(str);
+        // var arr = str.match(/(\w)\1*/g) //获取相同字符组成的数组
+        // console.log(arr);
+        // arr.sort((a,b)=>{  //  数组排序 ，第一项就是字符串最长的
+        //     return b.length - a.length
+        // })
+        // return{
+        //     key:arr[0][0],  //arr[]
+        //     num:arr[0].length
+        // }
+
+        
+        str = str.split('').sort().join('') //把字符串进行排序
+        
+        str.replace(/(\w)\1*/g,function($0,$1){
+            if($0.length > num){
+                num = $0.length
+                key = $1
+            }
+        })
+        return{
+            key,num
+        }
+    }
+    getMax2(str)
+</script>

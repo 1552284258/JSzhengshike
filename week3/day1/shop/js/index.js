@@ -1,10 +1,10 @@
 let data;
-let xhr = new XMLHttpRequest();//创造实例
-xhr.open('get', './data.json', true);//true代表异步，false代表同步
+let xhr = new XMLHttpRequest(); //创造实例
+xhr.open('get', './data.json', true); //true代表异步，false代表同步
 xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
         data = JSON.parse(xhr.response)
-        render(data)//请求成功之后，再去渲染数据
+        render(data) //请求成功之后，再去渲染数据
         myBind(data)
     }
 }
@@ -17,7 +17,12 @@ let commentBtn = document.querySelector('#commentBtn')
 function render(ary) {
     let str = '';
     ary.forEach(item => {
-        let { img, title, price, num } = item
+        let {
+            img,
+            title,
+            price,
+            num
+        } = item
         str += `<li>
         <div id="imgBox">
             <img src="${img}" alt="">
@@ -37,7 +42,7 @@ function render(ary) {
 
 function myBind(data) {
 
-    function click(ele,key) {
+    function click(ele, key) {
         ele.flag = 1
         ele.onclick = function () {
             this.flag *= -1
