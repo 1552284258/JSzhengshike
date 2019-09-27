@@ -33,8 +33,6 @@
                 obj[str[i]] = 1
             }
         }
-        console.log(obj)
-
         var val = Object.values(obj)
         var key = Object.keys(obj)
         var m = Math.max(...val)
@@ -66,32 +64,30 @@
     var reg = /([a-z]+)(\d+)\1\2/
     var str = 'zf2019zf2019'
     // console.log(reg.exec(str),666);
-    
+
     var str = 'fegdrthtyugkilkeweedjhgfdqffgeyeewhewefghrreeddqdsedwqgteqweefdfdfffddatdaqqwfwqwdg'
+
     function getMax2(str) {
-        str = str.split('').sort().join('') //把字符串进行排序
-        // console.log(str);
-        // var arr = str.match(/(\w)\1*/g) //获取相同字符组成的数组
-        // console.log(arr);
-        // arr.sort((a,b)=>{  //  数组排序 ，第一项就是字符串最长的
+        // str = str.split('').sort().join('') 
+        // var arr = str.match(/(\w)\1*/g) 
+        // arr.sort((a,b)=>{
         //     return b.length - a.length
         // })
         // return{
-        //     key:arr[0][0],  //arr[]
-        //     num:arr[0].length
+        //     key:arr[0][0],//arr第一项的第一个字符
+        //     num:arr[0].length//arr第一项的长度
         // }
 
-        
+        let key = '', num = 0
         str = str.split('').sort().join('') //把字符串进行排序
-        
-        str.replace(/(\w)\1*/g,function($0,$1){
-            if($0.length > num){
+        str.replace(/(\w)\1*/g, function ($0, $1) {
+            if ($0.length > num) {
                 num = $0.length
                 key = $1
             }
         })
-        return{
-            key,num
+        return {
+            key, num
         }
     }
     getMax2(str)

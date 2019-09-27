@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //一个字符串中出现次数最多的字符
+    function getMax(str) {
+        var obj = {}
+        for (let i = 0; i < str.length; i++) {
+            if ((obj.hasOwnProperty.str[i])) {
+                obj[str[i]] += 1
+            } else {
+                obj[str[i]] = 1
+            }
+        }
+        let m = '', n = 0;
+        for (var k in obj) {
+            if (obj[k] > n) {
+                m = k
+                n = obj[k]
+            }
+        }
+        return {
+            m, n
+        }
+    }
+
+    function getMax2(str) {
+        str = str.split('').sort().join('')
+        let reg = /(\w)\1*/g
+        let s = '', n = 0;
+        str.replace(reg, function (a, b) {
+            if (a.length > n) {
+                n = a.length
+                s = b
+            }
+        })
+        return {
+            key: s,
+            val: n
+        }
+    }
+
+    function getMax3(str) {
+        str = str.split('').sort().join('')
+        let reg = /(\w)\1*/g
+        var ary = str.match(reg)
+        ary.sort((a, b) => {
+            return b.length - a.length
+        })
+        return {
+            key: ary[0][0], //ary第一项的第一个字母
+            var: ary[0].length
+        }
+    }
+
+
+    //翻转大小写
+    function turn(str) {
+        // return str.replace(/([a-z]*)([A-Z]*)/g,function(a,b,c){
+        //     return b.toUpperCase() + a.toLowerCase()
+        // })
+
+        return str.replace(/\w/g, function (a) {
+            return a.toLowerCase == a ? a.toUpperCase() : a.toLowerCase()
+        })
+    }
+
+    // 小写数字 转大写
+    var str = '今年是2017年'; //
+    var ary = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖', '拾'];
+    str.replace(/\d/g, function (n) {
+        return ary[n]
+    })
+
+    //模板引擎
+    var str = '姓名是：{{name}},年龄是:{{age}},性别是:{{sex}}'
+    var data = {
+        name: 'xm',
+        age: 20,
+        sex: 1
+    }
+    function formate(str, date) {
+        var reg = /\{\{(\w*)\}\}/g
+        str.replace(reg, function (a, b) {
+            return data[b]
+        })
+    }
+
+    var str = '今年是{{year}}年{{month}}月{{day}}日'
+    function formateTime(str) {
+        var reg = /\{\{(\w*)\}\}/g
+        var time = new Date()
+        var year = time.getFullYear()
+        var month = time.Month() + 1
+        var day = time.Date()
+        str.replace(reg, function (a, b) {
+            return eval(b)
+        })
+    }
+
+    //千分符
+    function fromateMoney(str) {
+        var reg = /(\d{1-3})(?=(\d{3}*)$)/g
+        str.replace(reg, '$1,')
+        return str
+    }
+
+    function fromateMoney2(str) {
+        str = str.split('').reverse().join('')
+        let s = ''
+        for (let i = 0; i < str.length; i++) {
+            if (i % 3 == 2) {
+                s += str[i] + ','
+            } else {
+                s += str[i]
+            }
+        }
+        s = s.split('').reverse().join('')
+        return s.replace(/^,/, '')
+    }
+
+    //封装一个offset方法：该方法可以求出当前元素到body的偏移量
+    function offset(ele) {
+        //ele到body的偏移量
+        let l = ele.offsetLeft
+        let t = ele.offsetTop
+        let temp = ele.offsetParent;
+        while (temp) {
+            l += temp.clientLeft + temp.offsetLeft
+            t += temp.clientTop + temp.offsetTop
+            temp += temp.offsetParent
+        }
+        return {
+            l, t
+        }
+    }
+    offset(box)
+
+
+
+
+
+
+
+
+
+    //一个字符串中出现次数最多的字符
+    function getMax(str) {
+        str = str.split('').sort().join('')
+        let key = '', val = 0;
+        str.replace(/(\w)\1*/g, function (a, b) {
+            if (a.length > val) {
+                key = b
+                val = a.length
+            }
+        })
+        return {
+            key, val
+        }
+    }
+
+    function getMax2(str) {
+        let obj = {}
+        for (let i = 0; i < str.length; i++) {
+            if (obj.hasOwnProperty(str[i])) {
+                obj[str[i]] += 1
+            } else {
+                obj[str[i]] = 1
+            }
+        }
+        let key = '', val = 0;
+        for (var k in obj) {
+            if (obj[k] > val) {
+                key = k
+                val = obj[k]
+            }
+        }
+        return {
+            key, val
+        }
+    }
+
+    function getMax3(str) {
+        str = str.split('').sort().join('').match(/(\w)\1*/g)
+        str.sort((a, b) => {
+            return b.length - a.length
+        })
+        return {
+            key: str[0][0],//str第一项的第一个字符
+            val: str[0].length
+        }
+    }
+
+    //翻转大小写
+    function turn(str) {
+        var reg = /([a-z]*)([A-Z]*)/g
+        return str.replace(reg, function (a, b, c) {
+            return b.toUpperCase() + c.toLowerCase()
+        })
+    }
+
+    function turn2(str) {
+        return str.replace(/(\w)/g, function (a) {
+            return a.toLowerCase() ? a.toUpperCase() : a.toLowerCase()
+        })
+    }
+
+    // 小写数字 转大写
+    var str = '今年是2017年'; //
+    var ary = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖', '拾'];
+    str.replace(/\d/g, function (a) {
+        return ary[a]
+    })
+    //模板引擎
+    var str = '姓名是：{{name}},年龄是:{{age}},性别是:{{sex}}'
+    var data = {
+        name: 'xm',
+        age: 20,
+        sex: 1
+    }
+    function formate(ele, data) {
+        return ele.replace(/\{\{(\w)\}\}/g, function (a, b) {
+            return data[b]
+        })
+    }
+
+    var str = '今年是{{year}}年{{month}}月{{day}}日'
+    function formate2(ele, data) {
+        let time = new Date()
+        let year = time.getFullYear()
+        let month = time.getMonth() + 1
+        let day = time.getDate()
+        return str.replace(/\{\{(\w*)\}\}/g, function (a, b) {
+            return eval(b)
+        })
+    }
+    //千分符
+    function getMoney(str) {
+        str = str.split('').reverse().join('')
+        let s ''
+        for (let i = 0; i < str.length; i++) {
+            if (i % 3 == 2) {
+                s += str[i] + ','
+            } else {
+                s += str[i]
+            }
+        }
+        s = s.split('').reverse().join('')
+        return s.replace(/^,/, '')
+    }
+
+    function getMoney2(str) {
+        return str.replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,')
+    }
+    //封装一个offset方法：该方法可以求出当前元素到body的偏移量
+    function offset(ele) {
+        let l = ele.offsetLeft
+        let t = ele.offsetTop
+        let temp = ele.offsetParent
+        while (temp) {
+            l += temp.clientLeft + temp.offsetLeft
+            t += temp.clientTop + temp.offsetTop
+            temp = temp.offsetParent
+        }
+        return {
+            l, t
+        }
+    }
+
+
+
+
+
+
+
+
+
+//一个字符串中出现次数最多的字符
+function getMax(str){
+    str=str.split('').sort().join('').match(/(\w)\1*/g)
+    str.sort((a,b)=>{
+        return b.length - a.length
+    })
+    return{
+        key:str[0][0],
+        val:str[0]
+    }
+}
+
+function getMax2(str){
+    let key='',val=0
+    str=str.split('').sort().join('').replace(/(\w)\1*/g,function(a,b){
+        if(a.length > val){
+            key = b
+            val = a.length
+        }
+    })
+    return{
+        key,val
+    }
+}
+
+function getMax3(str){
+    var obj = {}
+    for(let i=0;i<str.length;i++){
+        if(obj.hasOwnProperty(str[i])){
+            str[i]+=1
+        }else{
+            str[i]=1
+        }
+    }
+    let key='',val=0
+    for(var k in obj){
+        if(obj[k] > val){
+            key = k
+            val = obj[k]
+        }
+    }
+}
+//翻转大小写
+// 小写数字 转大写
+
+//模板引擎
+//千分符
+//封装一个offset方法：该方法可以求出当前元素到body的偏移量
+
+
+
+
+
+</script>
