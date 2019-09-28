@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            height: 5000px;
+            background: -webkit-linear-gradient(#fff, pink, blue, yellow, green, red)
+        }
+
+        #btn {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 100px;
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            user-select: none;
+            background: rgb(35, 54, 61);
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="btn">回到顶部</div>
+</body>
+
+</html>
+<script>
+    var btn = document.getElementById('btn')
+    var timer = null
+    btn.onclick = function () {
+        // document.documentElement.scrollTop = 0;
+
+        timer = window.setInterval(() => {
+            if (document.documentElement.scrollTop == 0) {
+                clearInterval(timer);
+                return;
+            }
+            document.documentElement.scrollTop -= 10;
+        }, 5);
+    }
+    window.onmousewheel = function () {
+        //监听鼠标滚轮事件
+        clearInterval(timer);
+    }
+</script>
