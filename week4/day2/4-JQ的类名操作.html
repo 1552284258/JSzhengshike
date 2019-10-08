@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #box {
+            background: salmon
+        }
+
+        .www {
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box" class="qqq">珠峰培训</div>
+</body>
+
+</html>
+<script src="./jq.js"></script>
+<script>
+    // JQ先引入 再使用；
+    // JQ获取到的元素统一是一个集合;我们把这个集合称为JQ对象；只有JQ对象才能调用JQ的方法
+    // JQ获取元素  $('css选择器')
+    var box = document.getElementById('box');
+    var $box = $('#box') //JQ 对象
+    console.log(box, $box);
+    $box.addClass('www')
+    $box.on('click', function () {
+        // console.log(this);//this是原生对象
+        //原生对象转换成JQ对象  $(元生对象)
+        // $box.toggleClass('www')
+        var $this = $(this)
+        $(this).toggleClass('www') //JQ对象
+        $this.css('color', '#ccc')
+    })
+
+</script>
+<!-- http://jquery.cuishifeng.cn/index.html -->

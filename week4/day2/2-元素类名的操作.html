@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box box1  box2 box22 box_3">
+        hello word
+    </div>
+</body>
+
+</html>
+<script>
+    //自己封装3个方法  可以实现 hasClass  addClass   removeClass  的功能
+    var box = document.getElementsByClassName('box')[0]
+    hasClass(box, 'qqq')  //false  判断元素是否有对应的类名
+    function hasClass(ele, cln) {
+        //先获取 元素的所有类名，再去查看类名中有没有指定的类名
+        // let str = ele.className;
+        // let arr = str.split(/ +/g)
+        // return arr.indexOf(cln) != -1 ? true : false
+
+        //思路2 把类名做成一个正则 这个正则需要有左右边界
+        // let reg = new RegExp(`\\b${cln}\\b`,'g')
+        // return reg.test(str)
+
+        //思路4 把类名做成一个正则  这个正则是判断了类名左右的情况
+        // let reg = new RegExp(`(^| +)${cln}( +|$)`)
+        // return reg.test(str)
+
+
+    }
+
+    //匹配多个类名
+    function hasClass2(ele, cln) {
+        let str = ele.className;
+        cln = cln.replace(/^ +| +$/g, '')
+        let ary = cln.split(/ +/)
+
+        let flag = true;
+        for (let i = 0; i < ary.length; i++) {
+            let reg = new RegExp(`(^| +)${ary[i]}( +|$)`)
+            if (!reg.test(str)) {
+                flag = false
+                break
+            }
+        }
+        return flag
+    }
+    hasClass2(box, '  box2   box_3  box')
+
+    HTMLElement.prototype.hasClass = function hasClass(cln = '') {
+        let str = this.className;
+        cln = cln.replace(/^ +| +$/g, '')
+        let ary = cln.split(/ +/)
+
+        let flag = true;
+        for (let i = 0; i < ary.length; i++) {
+            let reg = new RegExp(`(^| +)${ary[i]}( +|$)`)
+            if (!reg.test(str)) {
+                flag = false
+                break
+            }
+        }
+        return flag
+    }
+    box.hasClass('  box2   box_3  box')
+
+    //--------------------------------------------------------------------------------
+
+    HTMLElement.prototype.addClass = function addClass(cln) {
+        //单个类名   先查看有没有对应的类名，没有再去加
+        //this ---> box
+        cln = cln || '';
+        if (this.hasClass(cln)) return
+        cln = cln.replace(/^ +| +$/g, '')// 去除首尾空格
+        let ary = cln.split(/ +/);
+        for (let i = 0; i < ary.length; i++) {
+            if (!this.hasClass(ary[i])) {
+                this.className += ' ' + ary[i];
+            }
+        }
+    }
+
+    //--------------------------------------------------------------------------------
+
+
+    HTMLElement.prototype.removeClass = function removeClass(cln) {
+        cln = cln || '';
+        let str = this.className;
+        cln = cln.replace(/^ +| +$/g, '')// 去除首尾空格
+        let ary = cln.split(/ +/);
+        for (let i = 0; i < ary.length; i++) {
+            let reg = new RegExp('\\b' + ary[i] + '\\b', 'g')
+            str = str.replace(reg, '')
+        }
+        str = str.replace(/ +/g, ' ').replace(/^ +| +$/g, '') //把多个空格替换成一个空格
+        this.className = str
+    }
+
+    //--------------------------------------------------------------------------------
+
+    //有这个类名就删除，没这个类名就添加    
+    HTMLElement.prototype.toggleClass = function toggleClass(cln) {
+        if (this.hasClass(cln)) {
+            this.removeClass(cln)
+        }else{
+            this.addClass(cln)
+        }
+    }
+    box.toggleClass('box');
+
+    
+</script>

@@ -28,15 +28,15 @@ function render(ary) {
     ary.forEach(item => {
         let { desc, pic, height, author } = item;
         str = `
-        <img  realSrc= "${pic}" src="./img/1.jpg" alt="" style='height:${height}px'>
+        <img  realSrc= "${pic}" alt="" style='height:${height}px'>
         <p class="desc">${desc}</p>
         <p class="author">"${author}</p>
         `;
-          let temp = getMinLi();
-          let div=document.createElement('div');
-          div.className='img_box';
-          div.innerHTML=str;
-          temp.appendChild(div);
+        let temp = getMinLi();
+        let div = document.createElement('div');
+        div.className = 'img_box';
+        div.innerHTML = str;
+        temp.appendChild(div);
     });
 }
 
@@ -87,6 +87,8 @@ function loadAll() {
     })
 
 }
+
+
 function faseIn(ele) {
     ele.style.opacity = 0;
     let n = 0;
