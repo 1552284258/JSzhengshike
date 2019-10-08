@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    text-decoration: none;
 }
 body{
     background: #eeeeee;
@@ -20,18 +19,10 @@ body{
     float: left;
     width: 236px;
     height: 126px;
-    overflow: hidden;
     margin: 0 16px 16px 0;
 }
 .head li:nth-child(5){
     margin-right: 0px;
-}
-.head li img{
-    width: 100%;
-}
-.body{
-    width: 100%;
-    overflow: visible;
 }
 .body li{
     float: left;

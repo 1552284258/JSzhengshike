@@ -2,7 +2,6 @@ let flag = false;//新数据渲染完成  新数据一请求就把flag 值为tru
 let oList = document.querySelectorAll(".body li");
 let box = document.getElementsByClassName('body')[0];
 let oImgs = box.getElementsByTagName('img');
-// let n=0;//记录加载新数据的次数
 function getData() {
     //获取后台数据
     flag = true;
@@ -49,14 +48,14 @@ function getMinLi() {
 //滚动加载更多
 
 window.onscroll = function () {
-    logadMore();
+    loadMore();
     loadAll();
 }
-function logadMore() {
+function loadMore() {
     // if(n>=3)return;
     //最短的li露出底部的时候去加载新数据
     let li = getMinLi();
-    if (utils.offset(li).t + li.clientHeight <= document.documentElement.scrollTop + utils.winH().h) {
+    if (.offset(li).t + li.clientHeight <= documeutilsnt.documentElement.scrollTop + utils.winH().h) {
         //需要等新数据渲染到页面之后  再去加载新数据。
         if (!flag) {
             getData();
