@@ -1,49 +1,101 @@
-let oLis = document.querySelectorAll('.body li');
-let box = document.getElementsByTagName('body')[0];
+let flag = false;//新数据渲染完成  新数据一请求就把flag 值为true
+let oList = document.querySelectorAll(".body li");
+let box = document.getElementsByClassName('body')[0];
+let oImgs = box.getElementsByTagName('img');
+// let n=0;//记录加载新数据的次数
 function getData() {
     //获取后台数据
+    flag = true;
     let xhr = new XMLHttpRequest();
     xhr.open('get', './data.json', true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && /200|304/.test(xhr.status)) {
-            //  请求成功
-            console.log(xhr.response)
+            //请求成功
+            // console.log(xhr.response)
             let data = JSON.parse(xhr.response);
-            remder(data); //获取成功之后，渲染数据
-            remder(data);
-            remder(data);
-            remder(data);
-            remder(data);
+            render(data);//获取成功数据之后渲染数据
+            flag = false;//代表新数据渲染完成之后的操作
+            loadAll();
         }
     }
     xhr.send();
-
 }
-getData()
+getData();
 
 //渲染数据
-function remder(ary) {
+function render(ary) {
     let str = '';
-    ary.forEach((item, index) => {
-        let { pic, desc, height, author } = item;
-        str = `<div class="img_box">
-                <img src="${pic}" alt="">
-                <p class="desc">${desc}</p>
-                <p class="author">${author}</p>
-                </div>`
-        //挨个列的排放 
-        // oLis[index%5].innerHTML += str;
-        let temp = getMinLi();//找出了最低的li
-        //把要增加的这一项 放到最低的那个li中
-        temp.innerHTML += str
-    })
+    ary.forEach(item => {
+        let { desc, pic, height, author } = item;
+        str = `
+        <img  realSrc= "${pic}" src="./img/1.jpg" alt="" style='height:${height}px'>
+        <p class="desc">${desc}</p>
+        <p class="author">"${author}</p>
+        `;
+          let temp = getMinLi();
+          let div=document.createElement('div');
+          div.className='img_box';
+          div.innerHTML=str;
+          temp.appendChild(div);
+    });
 }
 
-//找最低的 li
-function getMinLi(){
+//找最低的li
+function getMinLi() {
     //能找出最短的那个li
-    let ary = [...oLis].sort((a,b)=>{
-        return a.clientHeight - b.clientHeight;
+    let ary = [...oList].sort((a, b) => a.clientHeight - b.clientHeight);
+    return ary[0];
+}
+//滚动加载更多
+
+window.onscroll = function () {
+    logadMore();
+    loadAll();
+}
+function logadMore() {
+    // if(n>=3)return;
+    //最短的li露出底部的时候去加载新数据
+    let li = getMinLi();
+    if (utils.offset(li).t + li.clientHeight <= document.documentElement.scrollTop + utils.winH().h) {
+        //需要等新数据渲染到页面之后  再去加载新数据。
+        if (!flag) {
+            getData();
+        }
+    }
+
+}
+function loadImg(ele) {
+    if (ele.myLoad) return;
+    //图片懒加载
+    if (utils.offset(ele).t + ele.clientHeight / 2 <= document.documentElement.scrollTop + utils.winH().h) {
+        //图片露出了一半
+        let realSrc = ele.getAttribute("realSrc");
+        let temp = new Image();
+        temp.src = realSrc;//让临时图片去请求真实的图片地址。
+        temp.onload = function () {
+            //图片已经从远程拿到了本地
+            ele.src = realSrc;
+            ele.myLoad = true;//加载过之后的图片就不需要再加载了
+            faseIn(ele);
+        }
+        temp = null;
+    }
+}
+function loadAll() {
+    [...oImgs].forEach(item => {
+        loadImg(item);
     })
-    return ary[0]
+
+}
+function faseIn(ele) {
+    ele.style.opacity = 0;
+    let n = 0;
+    ele.timer = setInterval(() => {
+        n += 0.01;
+        if (n >= 1) {
+            n = 1;
+            clearInterval(ele.timer);
+        }
+        ele.style.opacity = n;
+    }, 10)
 }
