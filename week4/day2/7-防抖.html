@@ -31,7 +31,7 @@
 
     //  考试题  必考题
     function debounce(fn, wait) {
-        wait = wait || 100;
+        wait = wait || 1000;
         var timer = null;
         return function () {
             clearTimeout(timer)
