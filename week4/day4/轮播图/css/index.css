@@ -30,7 +30,7 @@
   content: "\e74b";
 }
 
-#box {
+#box,#box2 {
   margin: 30px auto;
   width: 590px;
   height: 470px;
@@ -53,6 +53,7 @@ img {
   height: 100%;
   overflow: hidden;
   position: relative;
+  left: 0;
 }
 .img_box ul li {
   float: left;

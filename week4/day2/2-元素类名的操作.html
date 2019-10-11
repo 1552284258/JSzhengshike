@@ -51,7 +51,7 @@
         return flag
     }
     hasClass2(box, '  box2   box_3  box')
-
+    //匹配多个类名
     HTMLElement.prototype.hasClass = function hasClass(cln = '') {
         let str = this.className;
         cln = cln.replace(/^ +| +$/g, '')
@@ -70,7 +70,7 @@
     box.hasClass('  box2   box_3  box')
 
     //--------------------------------------------------------------------------------
-
+    //  添加类名
     HTMLElement.prototype.addClass = function addClass(cln) {
         //单个类名   先查看有没有对应的类名，没有再去加
         //this ---> box
@@ -87,7 +87,7 @@
 
     //--------------------------------------------------------------------------------
 
-
+    //移除类名
     HTMLElement.prototype.removeClass = function removeClass(cln) {
         cln = cln || '';
         let str = this.className;

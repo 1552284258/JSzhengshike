@@ -55,7 +55,7 @@ function loadMore() {
     // if(n>=3)return;
     //最短的li露出底部的时候去加载新数据
     let li = getMinLi();
-    if (.offset(li).t + li.clientHeight <= documeutilsnt.documentElement.scrollTop + utils.winH().h) {
+    if (utils.offset(li).t + li.clientHeight <= documeutilsnt.documentElement.scrollTop + utils.winH().h) {
         //需要等新数据渲染到页面之后  再去加载新数据。
         if (!flag) {
             getData();

@@ -21,7 +21,7 @@
             /* animation: move 2s linear infinite; */
         }
     </style>
-    <link rel="stylesheet" href="../../animate.css">
+    <link rel="stylesheet" href="../../网络animate.css">
 </head>
 
 <body>
@@ -36,7 +36,6 @@
     // 要移动的方向
 
     let box = document.getElementById('box')
-
     // function move(ele, attr, duration, target) {
     //     //要移动的距离  目标位置 - 初始位置
     //     let start = parseFloat(getComputedStyle(ele)[attr])
@@ -55,30 +54,27 @@
     // move(box,'left', 1000, 500)//1秒之内向右移动 500像素
 
 
-    function move(ele, attr, duration, target) {
-        //要移动的距离  目标位置 - 初始位置
-        let start = parseFloat(getComputedStyle(ele)[attr])
-        let changeL = target - start;
-        let speed = changeL / duration;//速度
+    function move(ele,attr,duration,target){
+        let start = parseFloat(getComputedStyle(ele)[attr]);
         let time = 0;
-        var timer = setInterval(() => {
+        var timer = setInterval(()=>{
             time += 20;
-            let l = linear(start, target, duration, time);
-            if (l >= target) {
-                l = target
-                clearInterval(timer)
+            let l = linear(start,target,duration,time);
+            if(l >= target){
+                l = target;
+                clearInterval(timer);
             }
-            ele.stye[attr] = l + 'px'
-        }, 20)
+            ele.style[attr] = l + 'px'
+        },20)
     }
-    function linear(begin, end, duration, time) {
-        //begin 初始值
-        //end 目标值
-        //duration 运动总时长
-        //time 当前运动时间
+    function linear(begin,target,duration,time){
+        // begin 初始值
+        // target 目标值
+        // duration运动总时间
+        // time 当前运动过的时间
         // 由以上四个值 我们可以算出元素当前的位置
-        return (end - begin) / duration * time + begin
-
+        return  (target-begin)/duration*time + begin;
     }
-    move(box,'left', 1000, 500)//1秒之内向右移动 500像素
+    move(box,'left',500,500);// 1秒之内向右移动 500像素；
+    move(box,'top',1000,500)
 </script>
