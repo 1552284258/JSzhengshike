@@ -24,11 +24,8 @@ document.body.innerText= ' <div></div>';
 
     //手写instanceof 
     function myInstance(temp,classN){
-        //temp通过__proto__向上查的时候
-        //若有某次的 __proto__ === classN.prototype 返回true
-        //当某次的 __proto__ === null；  这时返回false
         let str = typeof temp;
-        if(str !== 'object' && str !== 'function')return false;//不是对象 也不是 函数 就证明是值类型，这时return false
+        if(str !== 'object' && str !== 'function')return false;
         var left  = temp.__proto__;
         var right = classN.prototype;
         while(left){

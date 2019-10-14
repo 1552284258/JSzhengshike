@@ -42,6 +42,7 @@
             let a = item.split('='); // ['lx','1'...] 通过split把字符串通过参数分割成数组 数组名是 a
             obj[a[0]] = a[1]    
         })
+        obj.hash= url.match(/#(.+)/) ? url.match(/#(.+)/) : null
         return obj
     }
     console.log(getParam(str))
