@@ -70,6 +70,7 @@ $box.on('mouseleave', function () {
     autoMove()
 })
 $rightBtn.on('click', _.throttle(function () {
+    n--
     move()
 },500))
 $leftBtn.on('click', _.throttle(function () {

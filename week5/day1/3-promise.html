@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script src="./jquery-3.3.1.js"></script>
+<script>
+    // $.ajax({
+    //     url:'./data.json',
+    //     success:function(data){
+    //         $.ajax({
+    //             url:'./data.json',
+    //             success:function(){
+
+    //             }
+    //         })
+    //     }
+    // })
+
+    //executor  伊克斯三克特儿
+    //promise实例有三个状态：分别是 pending(等待中)    resolved(成功)     rejected(失败)
+    //          pending 代表当前的promise还是处在 等待状态
+    //          resolved 代表当前走了成功的回调
+    //          rejected  代表当前走了失败的回调
+    //          状态一旦修改，就不会再发生任何改变
+    // let p = new Promise(function (resolve, reject) {
+    //     //resolve 执行成功对应的回调函数
+    //     //reject 执行失败对应的回调函数
+    //     //具体是执行成功还是失败 是由 书写executor函数的这个人决定的
+    //     setTimeout(() => {
+    //         // resolve('成功')
+    //         // reject(123)
+    //     }, 3000);
+    //     resolve('qw')
+    // });
+
+    // //then 接受两个函数作为参数  第一个参数对应 resolve  第二个参数对应 reject
+    // p.then(function (data) {
+    //     console.log('成功1');
+    //     console.log(data);
+    //     return 'chengong'
+    // }, function (err) {
+    //     console.log('失败1');
+    //     console.log(err);
+    //     return 'shibai'
+    // }).then(function (data2) {
+    //     console.log('成功2');
+    //     console.log(data2);
+    // }, function (err2) {
+    //     console.log('失败2');
+    //     console.log(err2);
+    // })
+
+    // let p = new Promise(function (res, rej) {
+    //     $.ajax({
+    //         url: './data.json',
+    //         success: res,
+    //         error:function(data){
+    //             console.log(data);
+    //             // rej(data)
+    //             res(data)
+    //         }
+    //     })
+    // })
+    // p.then(function (data) {
+    //     //then可以写两个参数，也可以只写一个参数
+    //     //写一个代表的是成功的回调；失败信息我们可以通过catch捕获
+    //     console.log(data);
+    //     return new Promise(function (res2, rej2) {
+    //         res2(666)
+    //     })
+    // }).then(function (data2) {
+    //     console.log(data2);
+    // }).catch(function (err) {
+    //     console.log(err);
+    // })
+
+    new Promise(function(res,rej){
+        res(123)
+        console.log(888);
+    }).then((data)=>{
+        console.log(data);
+    }).catch((err)=>{
+        console.log(err);
+    }).finally(()=>{
+        alert('失败 or 成功--->随便你')
+        console.log('失败 or 成功')
+    })
+    console.log(999)
+
+
+
+</script>
