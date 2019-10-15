@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+<script>
+let p = new Promise(function(res,rej){
+    // setTimeout(() => {
+    //     console.log(666)
+    // }, 2000);
+
+    // $.ajax({
+    //     url:'./data.json',
+    //     success:function(data){
+    //         res(data)
+    //     },
+    //     error:function(err){
+    //         erj(err)
+    //     }
+    // })
+
+    res(111)
+}).then(function(data){
+    console.log(1)
+},function(error){
+    console.log(0)
+}).catch((err)=>{
+    console.log(666,err)
+}).finally(()=>{
+    //不管是成功还是失败 都要执行的代码 我们可以放到这个函数中
+    
+})
+</script>

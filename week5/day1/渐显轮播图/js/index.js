@@ -77,7 +77,7 @@ var banner = (function () {
     function autoMove() {
         timer = setInterval(() => {
             move()
-            autoFocus()
+            // autoFocus()
         }, 2000)
     }
 
