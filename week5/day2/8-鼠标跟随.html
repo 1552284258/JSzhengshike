@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .litImg {
+            width: 300px;
+            height: 200px;
+            margin: 50px;
+            display: block;
+            border: 1px solid blue;
+
+        }
+
+        .bigImg {
+            width: 600px;
+            height: 400px;
+            display: none;
+        }
+        .bigImgBox{
+            position:absolute;
+            top:100px;
+            right:500px;
+            width: 200px;
+            height:200px;
+            overflow:hidden;
+            border:1px solid red;
+        }
+
+        #box {
+            width: 100%;
+            height: 100%
+        }
+    </style>
+</head>
+
+<body>
+<div id="box">
+    <div class="litImgBox">
+        <img src="./img/1.jpg" alt="" class="litImg">
+        <img src="./img/2.jpg" alt="" class="litImg">
+    </div>
+    <div class="bigImgBox">
+        <img src="./img/1.jpg" alt="" class="bigImg">
+        <img src="./img/2.jpg" alt="" class="bigImg">
+    </div>
+</div>
+</body>
+
+</html>
+<script>
+    var box = document.getElementById('box')
+    var litImgs = document.getElementsByClassName('litImg')
+    var bigImgs = document.getElementsByClassName('bigImg')
+    var litImgBox = document.getElementsByClassName('litImgBox')
+    for (let i = 0; i < litImgs.length; i++) {
+
+        litImgs[i].onmouseenter = function (e) {
+            bigImgs[i].style.display = 'block';
+            box.style.display = 'block'
+            litImgs[i].onmousemove = function (e) {
+                let { pageX, pageY } = e
+                    bigImgs[i].style.top = pageY + 'px'
+                    bigImgs[i].style.left = pageX + 'px'
+
+                // box.style.top = (e.pageY - 50) + 'px'
+                // box.style.left = (e.pageX - 50) + 'px'
+            }
+        }
+
+        litImgs[i].onmouseleave = function () {
+            bigImgs[i].style.display = 'none';
+            // box.style.display = 'none'
+            litImgs[i].onmousemove = null
+        }
+
+    }
+
+</script>

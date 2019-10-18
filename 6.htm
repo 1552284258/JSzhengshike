@@ -99,60 +99,57 @@
             <!-- <li>
                 <img src="./week5/day1/渐显轮播图/img/4.jpg" alt="">
                 <p>介绍介绍介绍介绍</p>
+            </li>
+            <li>
+                <img src="./week5/day1/渐显轮播图/img/4.jpg" alt="">
+                <p>介绍介绍介绍介绍</p>
+            </li>
+            <li>
+                <img src="./week5/day1/渐显轮播图/img/4.jpg" alt="">
+                <p>介绍介绍介绍介绍</p>
             </li> -->
         </ul>
 
         <div class="tip_box">
-            <!-- <span class="tip current"></span>
-                 <span class="tip"></span> -->
+            <!-- <span class="tip current"></span> -->
+            <!-- <span class="tip"></span>
+            <span class="tip"></span>
+            <span class="tip"></span> -->
         </div>
 
         <div class="btn_box">
-            <div class="left_btn"> < </div>
-            <div class="right_btn"> > </div>
+            <div class="left_btn">
+                < </div> <div class="right_btn"> >
+            </div>
         </div>
     </div>
 </body>
 
 </html>
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-
 <script>
     let $box = $('#box'),
         $ul = $box.find('.img_box'),
-        $lis = $box.find('.img_box li'),
         $tipBox = $box.find('.tip_box'),
-        $tips = $tipBox.children('.tip'),
+        $btnBox = $box.find('.btn_box'),
         $leftBtn = $box.find('.left_btn'),
-        $rightBtn = $box.find('.right_btn'),
+        $rifhtBtn = $box.find('.right_btn'),
+        $lis = $box.find('.img_box li'),
+        $tips = $tipBox.children('.tip_box .tip'),
         timer = null,
         n = 0;
 
-    function throttle(fn, wait = 500) {
-        let flag = true;
-        return function () {
-            if (!flag) return
-            flag = false
-            setInterval(() => {
-                flag = true
-                fn.apply(fn, arguments)
-            }, wait);
-        }
-    }
-
-    
-    function getData(data) {
+    function getData() {
         $.ajax({
             url: './data.json',
             success: function (data) {
-                console.log(data);
+                console.log(data)
                 render(data)
-                autoMove()
-                autoDian()
-                eventBind()
+                outoMove()  
+                // move()
             },
             error: function () {
-                console.log('失败');
+                console.log('sb')
             }
         })
     }
@@ -164,62 +161,34 @@
             str += `<li>
                 <img src="${item.img}" alt="">
                 <p>${item.desc}</p>
-                </li>`
-            tipStr += (index == 0 ? `<span class="tip current"></span>` : ` <span class="tip"></span>`);
+                </li>`;
+            tipStr += (index == 0 ? `<span class="tip current"></span>` : `\n<span class="tip"></span>`);
         })
         $ul.html(str)
-        $tipBox.html(tipStr);
-        $tips = $tipBox.children('.tip')
+        $tipBox.html(tipStr)
         $lis = $box.find('.img_box li')
-        $lis.eq(0).show().siblings().hide()
-     }
+        $tips = $tipBox.children('.tip_box .tip')
+        $lis.eq(0).siblings().hide()
+    }
 
     function move() {
         n++;
-        if (n > $lis.length -1) {
+        if (n > $lis.length - 1) {
             n = 0
         }
         $lis.eq(n).show().css({ opacity: 0 }).animate({ opacity: 1 }, 300).siblings().animate({ opacity: 0 }, 300, function () {
-            $lis.eq(n).siblings().hide();
+            $lis.eq(n).show().siblings().hide()
         })
-        autoDian()
+        outuDian()
     }
 
-    function autoMove() {
-        timer = setInterval(() => {
+    function outoMove(){
+        setInterval(() => {
             move()
         }, 2000);
     }
 
-    function autoDian() {
-        $tips.eq(n).addClass('current').siblings().removeClass('current');
-    }
-
-    function eventBind() {
-        $box.on('mouseenter', function () {
-            clearInterval(timer)
-        })
-        $box.on('mouseleave', function () {
-            autoMove()
-        })
-        $leftBtn.on('click', function () {
-            n--
-            if (n > $lis.length) {
-                n = $lis.length - 1
-            }
-
-            n--
-            move()
-        })
-        $rightBtn.on('click', function () {
-            move()
-        })
-        $tips.on('click', function () {
-            let index = $(this).index()
-            n = index;
-
-            n--
-            move()
-        })
+    function outuDian(){
+        $tips.eq(n).addClass('current').siblings().removeClass('current')
     }
 </script>

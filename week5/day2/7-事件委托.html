@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    #ul li:nth-child(2n+1){
+        background:green;
+        margin: 10px 0;
+    }
+    #ul li:nth-child(2n){
+        background:pink;
+        margin: 10px 0;
+    }
+    </style>
+</head>
+<body>
+    <ul id="ul" style="background:#ccc">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+</body>
+</html>
+<script>
+
+    //事件委托 利用的就是  事件的冒泡传播机制
+    let ul = document.getElementById('ul');
+    ul.onclick=function(e){
+        e = e || window.event;
+        var tar = e.target || e.srcElement;
+        console.log(e.target);
+        if(tar.nodeName.toLowerCase() !== 'li')return
+        alert(tar.innerText)
+    }
+</script>

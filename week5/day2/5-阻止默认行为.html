@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 20px;
+            height: 20px;
+            /* margin:50px auto; */
+            background: deeppink;
+            line-height: 10px;
+            text-align: center;
+            display: none;
+            position: absolute;
+            cursor: default;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://baidu.com" id="a" target="_blank">百度</a>
+    <div id="box"></div>
+</body>
+
+</html>
+<script>
+    // 事件执行   先执行对应的事件 再执行默认行为；  但是在滚动行为中，顺序相反
+
+    
+    a.onclick = function (e) {
+        e = e || window.event;// 事件对象
+        // e.preventDefault(); //阻止默认行为
+        var tar = e.target || e.srcElement; //事件源
+        // console.log(a.getAttribute('href'));
+        // console.log(a.setAttribute('href','https://JD.com'));
+        // alert(666)
+        // return false  //也可以阻止默认行为
+    }
+
+    window.onmousemove = function (e) {
+        e.preventDefault()
+        // console.log(e.pageX, e.pageY)
+        box.style.display = 'block';
+        box.style.top = (e.pageY-10) + 'px'
+        box.style.left = (e.pageX-10) + 'px'
+    }
+    window.onclick = function () {
+        box.style.display = 'none'
+    }
+</script>
