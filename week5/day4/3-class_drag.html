@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 100px;
+            height: 100px;
+            background: skyblue;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            cursor: move;
+            user-select: none;
+        }
+
+        #box2 {
+            width: 100px;
+            height: 100px;
+            background: lawngreen;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            cursor: move;
+            user-select: none;
+        }
+
+        #box3 {
+            width: 100px;
+            height: 100px;
+            background: deeppink;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            cursor: move;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"> </div>
+    <div id="box2"> </div>
+    <div id="box3"> </div>
+
+</body>
+
+</html>
+<script>
+
+    // function start(e) {
+    //     this.startX = offset(this).l;
+    //     this.startY = offset(this).t;
+    //     this.startPx = e.pageX;
+    //     this.startPy = e.pageY;
+    //     this.MOVE = move.bind(this)
+    //     this.END = end.bind(this)
+    //     document.addEventListener('mousemove', this.MOVE, false)
+    //     document.addEventListener('mouseup', this.END, false)
+    // }
+    // function move(e) {
+    //     this.style.left = e.pageX - this.startPx + this.startX + 'px';
+    //     this.style.top = e.pageY - this.startPy + this.startY + 'px';
+    // }
+    // function end(e) {
+    //     //鼠标抬起执行的函数
+    //     document.removeEventListener('mousemove', this.MOVE, false)
+    //     document.removeEventListener('mouseup', this.END, false)
+    // }
+    // function offset(ele) {
+    //     let l = ele.offsetLeft,
+    //         t = ele.offsetTop;
+    //     let temp = ele.offsetParent;
+    //     while (temp) {
+    //         l += temp.offsetLeft + temp.clientLeft;
+    //         t += temp.offsetTop + temp.clientTop;
+    //         temp = temp.offsetParent;
+    //     }
+    //     return {
+    //         l,
+    //         t
+    //     }
+    // }
+    // box.onmousedown = start;
+
+
+    class Drag {
+        constructor(id, n) {
+
+            this.box = document.getElementById(id);
+            this.START = this.start.bind(this)
+            this.MOVE = this.move.bind(this)
+            this.END = this.end.bind(this)
+            this.box.addEventListener('mousedown', this.START, false)
+            this.n = n
+            this.m = 0
+        }
+        start(e) {
+            //this 是当前的实例
+            this.startX = this.offset(this.box).l;
+            this.startY = this.offset(this.box).t;
+            this.startPx = e.pageX;
+            this.startPy = e.pageY;
+            document.addEventListener('mousemove', this.MOVE, false)
+            document.addEventListener('mouseup', this.END, false)
+            addZIndex(this.box)
+        }
+        move(e) {
+            //this 是当前的实例
+            this.box.style.left = e.pageX - this.startPx + this.startX + 'px';
+            this.box.style.top = e.pageY - this.startPy + this.startY + 'px';
+        }
+        end(e) {
+            //鼠标抬起执行的函数
+            document.removeEventListener('mousemove', this.MOVE, false)
+            document.removeEventListener('mouseup', this.END, false)
+
+            this.m++
+            if (this.n == undefined) return
+            if (this.m >= this.n) {
+                this.clear()
+            }
+        }
+        clear() {
+            this.box.removeEventListener('mousedown', this.START, false)
+        }
+        offset(ele) {
+            let l = ele.offsetLeft,
+                t = ele.offsetTop;
+            let temp = ele.offsetParent;
+            while (temp) {
+                l += temp.offsetLeft + temp.clientLeft;
+                t += temp.offsetTop + temp.clientTop;
+                temp = temp.offsetParent;
+            }
+            return {
+                l,
+                t
+            }
+        }
+
+    }
+    let l = 0
+    function addZIndex(ele) {
+        console.log(ele)
+        ele.style.zIndex = ++l
+    }
+    new Drag('box')
+    new Drag('box2')
+    new Drag('box3')
+</script>

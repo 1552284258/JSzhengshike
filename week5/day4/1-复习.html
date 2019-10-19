@@ -1,16 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
 </head>
+
 <body>
-    
+    <div id="box">zf</div>
 </body>
+
 </html>
+
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
 <script>
     // 放大镜  小蒙层/小盒子  ===  小盒子/大图片； 蒙层移动方向和大图移动方向是正好相反的
     // 大图移动的距离 与 小蒙层移动的距离 的 比例关系 ： 大盒子/小蒙层
 
-    
+    // DOM2级事件绑定   元素.addEventListener('事件类型',回调函数,false)
+    //          移除   元素.removeEventListener('事件类型',绑定的那个回调函数的地址,false)
+    //        IE添加   元素.attachEvent('on事件类型',回调函数)
+    //        IE移除   元素.detachEvent('on事件类型',回调函数)
+
+    Element.prototype.one = function (type, cb) {
+        function fn(e) {
+            cb.call(this, e)
+            this.removeEventListener(type, fn, false);
+        }
+        // this.addEventListener(type,cb,false)
+        this.addEventListener(type, fn, false); //fn中的this 是box
+    };
+
+    box.one('click', function (e) {
+        //e 是事件对象, this 是 box
+        console.log(e, this)
+    });
+
+    $(document).ready(function () {
+        //DOMContentLoaded
+        // DOM 结构加载完成触发
+        console.log(1)
+    });
+    $(document).ready(function () {
+        // DOM 结构加载完成触发
+        console.log(2)
+    });
+    window.onload = function () {
+        // 页面资源加载完成
+        console.log(3)
+    };
+    window.addEventListener('load', function () { 
+        console.log(4)
+    }, false);
 </script>

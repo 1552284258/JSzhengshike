@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn"></button>
+</body>
+</html>
+<script>
+    //  订阅 的 时候，把名字加入到订阅者清单
+    //  发布时  按照清单去送期刊
+
+    var ary = [];
+    function on(f){
+        //订阅函数  把对应的事件放到 清单里
+        ary.push(f);
+
+    }
+    function fire(n){
+        ary.forEach((f)=>{
+            f(n)
+        })
+    }
+    function f1(){
+        console.log(1)
+    }
+    function f2(){
+        console.log(2)
+    }
+    function f3(){
+        console.log(3)
+    }
+    on(f1)
+    on(f2)
+    on(f3)
+
+    fire(666)
+    btn.onclick = fire
+</script>
