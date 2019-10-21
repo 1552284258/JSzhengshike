@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 90%;
+            height: 600px;
+            background: skyblue;
+            margin: auto;
+        }
+        #box::before{
+            content:'1';
+            background:red;
+            color:red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        开始看hi皮猴儿安抚
+    </div>
+</body>
+
+</html>
+<!-- <script src="https://zeptojs.bootcss.com/zepto-docs.min.js"></script> -->
+<script>
+    // var box = document.getElementById('box');
+    // box.onclick=function(e){
+    //     //click 事件在移动端大概有300毫秒的延迟
+    //     console.log(e)
+    // }
+    // box.ontouchstart = function(e){
+    //     //手指触碰到屏幕就算
+    //     console.log(e.touches[0].pageY)
+    // }
+    // // box.ontouchmove=function(e){
+    // //     console.log('手指移动中')
+    // // }
+    // box.ontouchend=function(e){
+    //     console.log(e.changedTouches[0].pageY)
+    // }
+
+    // $('#box').on('longTap', function (e) {
+    //     console.log(e)
+    // })
+    // $('#box').longTap(function(e){
+    //     console.log(e)
+    // })
+    //zepto
+
+    //长按
+    Element.prototype.longTap = function (cb) {
+        let timer = null;
+        this.ontouchstart = function (e) {
+            timer = setTimeout(() => {
+                cb.call(this, e)
+            }, 300)
+        }
+        this.ontouchend = function (e) {
+            clearInterval(timer)
+            return false
+        }
+    }
+    //上划
+    Element.prototype.swipeup = function (cb) {
+        let sy = 0;
+        this.ontouchstart = function (e) {
+            sy = e.touches[0].pageY
+        }
+        this.ontouchend = function (e) {
+            if (sy - e.changedTouches[0].pageY > 100) {
+                cb.call(this, e)
+            }
+        }
+    }
+    //下拉
+    Element.prototype.swipedown = function (cb) {
+        let sy = 0;
+        this.ontouchstart = function (e) {
+            sy = e.touches[0].pageY
+        }
+        this.ontouchend = function (e) {
+            if (e.changedTouches[0].pageY - sy > 100) {
+                cb.call(this, e)
+            }
+        }
+    }
+    //左划
+    Element.prototype.swipeleft = function (cb) {
+        let l = 0;
+        this.ontouchstart = function (e) {
+            l = e.touches[0].pageX
+        }
+        this.ontouchend = function (e) {
+            if (l - e.changedTouches[0].pageX > 100) {
+                cb.call(this, e)
+            }
+        }
+    }
+    //右划
+    Element.prototype.swiperight = function (cb) {
+        let r = 0;
+        this.ontouchstart = function (e) {
+            r = e.touches[0].pageX
+        }
+        this.ontouchend = function (e) {
+            if (e.changedTouches[0].pageX - r > 100) {
+                cb.call(this, e)
+            }
+        }
+    }
+
+    box.swiperight(function (e) {
+        console.log(e)
+    })
+
+
+
+    box.addEventListener('touchmove',function(e){
+        e.preventDefault()
+    },{passive:true})
+    //passive true: 先执行默认事件 后执行绑定事件
+    //       false: 先执行绑定事件 后执行默认事件
+</script>
