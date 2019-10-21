@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script src="./jquery-3.3.1.js"></script>
+<script>
+
+    // pending 等待状态   resolved 成功状态   rejected 失败状态 
+    // 一经改变 ， 状态就不会改变
+    let p = new Promise(function(res,rej){
+        //executor 函数
+        res(123)    // 同步把状态变成了  ressolved
+        console.log(qqq);
+        rej(666)
+        console.log(999)
+    })
+    p.then(function(data){
+        // 对应res
+        console.log(data)
+    },function(err){
+        // 对应rej
+        console.log(res)
+    })
+
+    // Promise.all([p1,p2,p3]).then((data)=>{},()=>{})  //所有都成功
+    // Promise.race([p1,p2,p3]).then((data)=>{},()=>{}) /赛跑 谁快走谁
+    // Promise.reject('执行失败').then(()=>{},()=>{}) //手动创造一个失败态
+    // Promise.resolve('执行成功').then(()=>{},()=>{}) //手动创造一个成功态
+</script>
