@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{
+            background:url('./大图.jpg')no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            height: 2000px;
+        }
+        #box{
+            width: 200px;
+            height: 200px;
+            background:url("../../week5/day3/img/min.jpg") ;
+            border:10px solid pink;
+            padding:20px;
+            background-origin: border-box;
+            /* background-attachment: fixed; */
+            box-shadow: 10px 20px 10px 1px skyblue;
+            opacity: 0;
+            transition: height 1s 2s ease,opacity 2s 1s ease-in-out;
+        }
+        #box:hover{
+            height:400px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+</body>
+</html>
+<script>
+    let box = document.getElementById('box')
+    box.addEventListener('transitionend',function(){
+        console.log(6666)
+    },false)
+    box.addEventListener("webkitTransitionEnd",function(){
+        console.log(999)
+    },false)
+</script>
