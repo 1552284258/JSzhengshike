@@ -18,7 +18,8 @@
   transform-style: preserve-3d;
   transform: rotateX(45deg) rotateY(30deg);
   animation: move 2s infinite linear;
-  transform-origin: 100px 100px 100px; /*x   y    z   旋转基准点*/
+  transform-origin: 100px 100px 100px;
+  /*x   y    z   旋转基准点*/
 }
 #box ul li {
   position: absolute;
@@ -31,7 +32,6 @@
   line-height: 200px;
   border: 1px dashed red;
 }
-
 #box ul li:nth-child(2) {
   background: red;
   transform: rotateX(270deg);
@@ -60,7 +60,6 @@
   background: darkorange;
   transform: translateZ(200px);
 }
-
 @keyframes move {
   0% {
     transform: rotateX(0) rotateY(0);

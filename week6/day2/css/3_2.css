@@ -3,6 +3,58 @@
   padding: 0;
   list-style: none;
 }
+@keyframes move {
+  0% {
+    transform: rotateX(0) rotateY(0);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+.w,
+span {
+  width: 100px;
+  height: 200px;
+  overflow: hidden;
+}
+.w .qqq {
+  background: red;
+}
+div {
+  width: 100px;
+  height: 200px;
+  overflow: hidden;
+}
+div .qqq {
+  background: red;
+}
+.box_1 {
+  width: 10px;
+}
+.box_2 {
+  width: 20px;
+}
+.box_3 {
+  width: 30px;
+}
+.box_4 {
+  width: 40px;
+}
+.box_5 {
+  width: 50px;
+}
+.box_6 {
+  width: 60px;
+}
+.box_7 {
+  width: 70px;
+}
+.box_8 {
+  width: 80px;
+}
+.box_9 {
+  width: 90px;
+}
 #box {
   width: 200px;
   height: 200px;
@@ -18,7 +70,10 @@
   transform-style: preserve-3d;
   transform: rotateX(45deg) rotateY(30deg);
   animation: move 2s infinite linear;
-  transform-origin: 100px 100px 100px; /*x   y    z   旋转基准点*/
+  transform-origin: 100px 100px 100px;
+  /* & :nth-child(2) {
+      //加了空格后，代表当前元素下的 第二个儿子，即第二个li
+    } */
 }
 #box ul li {
   position: absolute;
@@ -31,10 +86,9 @@
   line-height: 200px;
   border: 1px dashed red;
 }
-
 #box ul li:nth-child(2) {
   background: red;
-  transform: rotateX(270deg);
+  transform: rotateX(-90deg);
   transform-origin: bottom;
 }
 #box ul li:nth-child(3) {
@@ -44,7 +98,7 @@
 }
 #box ul li:nth-child(4) {
   background: yellow;
-  transform: rotateY(270deg);
+  transform: rotateY(-90deg);
   transform-origin: left;
 }
 #box ul li:nth-child(5) {
@@ -59,13 +113,4 @@
 #box ul li:nth-child(1) {
   background: darkorange;
   transform: translateZ(200px);
-}
-
-@keyframes move {
-  0% {
-    transform: rotateX(0) rotateY(0);
-  }
-  100% {
-    transform: rotateX(360deg) rotateY(360deg);
-  }
 }

@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@keyframes move {
+  0% {
+    transform: rotateX(0) rotateY(0);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+@w:200px;//声明一个变量@w 对应的值是 200px
+
+.myfn(@a:200px,@b:200px){
+    //less的函数 形参可以赋予默认值
+    width: @a;
+    height: @b;
+}
+.w{
+    // width: 100%;
+    // height:100%;
+
+    .myfn(100px,200px);
+
+    overflow: hidden;
+    .qqq{
+        background: red;
+    }
+}
+div{
+    .w; //直接把 w 所有样式都复制过来
+}
+span:extend(.w){
+    //只混合.w自己的样式，不会混合后代的样式
+}
+
+.qqq(@n,@a) when (@n<10){
+    .box_@{n}{
+        width:@a*@n;
+    };
+    .qqq(@n+1,@a);
+};
+.qqq(1,10px);
+
+
+#box {
+  width: @w;
+  height: @w;
+  margin: 150px auto;
+  position: relative;
+  background: pink;
+  perspective: 1000px;
+  ul {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform: rotateX(45deg) rotateY(30deg);
+    animation: move 2s infinite linear;
+    transform-origin: @w/2 @w/2 @w/2;
+    li {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 200px;
+      background: rgba(102, 212, 216, 0.6);
+      text-align: center;
+      line-height: 200px;
+      border: 1px dashed red;
+      &:nth-child(2) {
+        //&就代表了当前的父级元素，即当前的li
+        background: red;
+        transform: rotateX(-90deg);
+        transform-origin: bottom;
+      }
+      &:nth-child(3) {
+        background: blue;
+        transform: rotateY(90deg);
+        transform-origin: right;
+      }
+      &:nth-child(4) {
+        background: yellow;
+        transform: rotateY(-90deg);
+        transform-origin: left;
+      }
+      &:nth-child(5) {
+        background: green;
+        transform: rotateX(90deg);
+        transform-origin: top;
+      }
+      &:nth-child(6) {
+        background: pink;
+        transform: rotateY(180deg);
+      }
+      &:nth-child(1) {
+        background: darkorange;
+        transform: translateZ(@w);
+      }
+    }
+    /* & :nth-child(2) {
+      //加了空格后，代表当前元素下的 第二个儿子，即第二个li
+    } */
+  }
+}

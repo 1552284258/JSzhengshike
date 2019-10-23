@@ -25,7 +25,7 @@
             margin: auto;
         }
 
-        #zz {
+        #mask {
             width: 100px;
             height: 100px;
             display: none;
@@ -58,7 +58,7 @@
     <div id="box">
         <img src="./img/1.jpg" alt="" class="min">
 
-        <span id="zz"></span>
+        <span id="mask"></span>
     </div>
     <div class="maxBox">
         <img src="./img/1.jpg" alt="" class="max">
@@ -71,49 +71,37 @@
 <script>
     var box = document.getElementById('box'),
         min = document.getElementsByClassName('min')[0],
-        zz = document.getElementById('zz'),
+        mask = document.getElementById('mask'),
         maxBox = document.getElementsByClassName('maxBox')[0],
         max = document.getElementsByClassName('max')[0];
-
-
     min.onmouseenter = function () {
         box.onmousemove = function (e) {
             var e = e || window.event;
             var maxsize = max.offsetHeight,
                 minsize = min.offsetHeight,
                 b = maxsize / minsize;
-
-            zz.style.display = 'block'
+            mask.style.display = 'block'
             max.style.display = 'block'
-
-            zz.style.left = e.pageX - zz.clientWidth / 2 + 'px'
-            zz.style.top = e.pageY - zz.clientHeight / 2 + 'px'
-
-            if (e.pageY > min.clientHeight - zz.clientHeight / 2) {
-                zz.style.top = min.clientHeight - zz.clientHeight + 'px';
-                max.style.top = -b * (min.clientHeight - zz.clientHeight / 2 - zz.clientHeight / 2) + 'px';
-
-
+            mask.style.left = e.pageX - mask.clientWidth / 2 + 'px'
+            mask.style.top = e.pageY - mask.clientHeight / 2 + 'px'
+            if (e.pageY > min.clientHeight - mask.clientHeight / 2) {
+                mask.style.top = min.clientHeight - mask.clientHeight + 'px';
+                max.style.top = -b * (min.clientHeight - mask.clientHeight / 2 - mask.clientHeight / 2) + 'px';
             } else {
-                max.style.left = -b * (e.pageX - zz.clientWidth /2) + 'px';
-                max.style.top = -b * (e.pageY - zz.clientHeight /2) + 'px';
+                max.style.left = -b * (e.pageX - mask.clientWidth /2) + 'px';
+                max.style.top = -b * (e.pageY - mask.clientHeight /2) + 'px';
             }
-
-
-            if (e.pageX > min.clientWidth - zz.clientWidth / 2) {
-                zz.style.left = min.clientWidth - zz.clientWidth + 'px';
-                max.style.left = -b * (min.clientWidth - zz.clientWidth / 2 - zz.clientWidth / 2) + 'px';
-
+            if (e.pageX > min.clientWidth - mask.clientWidth / 2) {
+                mask.style.left = min.clientWidth - mask.clientWidth + 'px';
+                max.style.left = -b * (min.clientWidth - mask.clientWidth / 2 - mask.clientWidth / 2) + 'px';
             } else {
-                max.style.left = -b * (e.pageX - zz.clientWidth / 2) + 'px';
-                max.style.top = -b * (e.pageY - zz.clientHeight /2) + 'px';
+                max.style.left = -b * (e.pageX - mask.clientWidth / 2) + 'px';
+                max.style.top = -b * (e.pageY - mask.clientHeight /2) + 'px';
             }
-
         }
     }
-
     box.onmouseout = function () {
         max.style.display = 'none'
-        zz.style.display = 'none'
+        mask.style.display = 'none'
     }
 </script>
