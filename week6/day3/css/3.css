@@ -1,0 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+#box {
+  width: 4.66666667rem;
+  background: skyblue;
+  height: 4.66666667rem;
+}

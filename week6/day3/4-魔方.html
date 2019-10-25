@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/4.css">
+    <script src="./flexible.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <ul>
+            <li><img src="./交互简历/images/cube-img1.png" alt=""></li>
+            <li><img src="./交互简历/images/cube-img2.png" alt=""></li>
+            <li><img src="./交互简历/images/cube-img3.png" alt=""></li>
+            <li><img src="./交互简历/images/cube-img4.png" alt=""></li>
+            <li><img src="./交互简历/images/cube-img5.png" alt=""></li>
+            <li><img src="./交互简历/images/cube-img6.png" alt=""></li>
+        </ul>
+    </div>
+</body>
+
+</html>
+<script>
+    let box = document.getElementById('box');
+    let ul = box.querySelector('ul')
+    let x = y = 0
+    box.ontouchstart = function (e) {
+        this.sx = e.touches[0].pageX;
+        this.sy = e.touches[0].pageY;
+
+    }
+    document.ontouchmove = function (e) {
+        let { pageX, pageY } = e.changedTouches[0]
+        ul.style.transform = `rotateY(${x + pageX - box.sx}deg) rotateX(${y + pageY - box.sy}deg)`
+    }
+    document.ontouchend = function (e) {
+        let { pageX, pageY } = e.changedTouches[0]
+        x = (x + pageX - box.sx)%360
+        y = (y + pageY - box.sy)%360
+    }
+</script>
