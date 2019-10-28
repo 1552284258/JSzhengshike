@@ -1,7 +1,7 @@
 var bell = document.getElementById('bell'),
     say = document.getElementById('say'),
     bgm = document.getElementById('bgm');
-    
+
 function loadBox() {
     let loadingBox = document.querySelector('.loadingBox');
     let progress = document.querySelector('.progress');// 获取进度条
@@ -16,23 +16,24 @@ function loadBox() {
             progress.style.width = per * 100 + '%';
             if (n === ary.length) {
                 // 所有图片都一经加载完成
-                loadingBox.style.opacity = 0;
-                loadingBox.addEventListener('transitionend', function (e) {
-                    // console.log(e)
-                    if (e.propertyName === 'opacity') {
-                        loadingBox.classList.add('hide');
-                        phoneBoxFn();//第一屏完成之后，再来第二屏
-                        bell.onload
-                        bell.play();
-                    }
+
+                progress.addEventListener('transitionend', function () {
+                    btn.classList.remove('hide');
                 }, false)
-                /* progress.addEventListener('transitionend',function(e){
-                    e.stopPropagation();
-                    // 阻止progress动效完成之后的冒泡
-                },false) */
             }
         }
     })
+    btn.ontouchend = function () {
+        loadingBox.style.opacity = 0;
+        loadingBox.addEventListener('transitionend', function (e) {
+            // console.log(e)
+            if (e.propertyName === 'opacity') {
+                bell.play()
+                loadingBox.classList.add('hide');
+                phoneBoxFn(); // 第一屏完成之后再来第二屏
+            }
+        }, false)
+    }
 }
 loadBox();
 
@@ -43,23 +44,48 @@ function phoneBoxFn() {
         overBox = document.querySelector('.phoneBox .overBox'),
         overBtn = overBox.querySelector('.overbtn'),
         phoneBox = document.querySelector('.phoneBox');
-
+    let clearFn = null;//为了清除时间定时器
 
     circle.addEventListener('touchend', function () {
         timeBox.classList.remove('hide');//显示时间
         footer.classList.add('hide');
         overBox.classList.remove('bot');
+        bell.pause();//点击接听键  让铃声停止 声音播放
+        say.play()
+        clearFn = changeTime()
     }, false)//{passive:true,capture:true} passive true;   capture
     overBtn.ontouchend = function () {
         //点击挂机键
         phoneBox.style.transform = 'translateY(110%)'
         chatBoxFn()
+        say.pause()
+        clearFn()
+        bgm.play()
+
         // phoneBox.addEventListener('transitionend',function(e){
         //     console.log(e)
         //     chatBoxFn()//上一屏完全消失之后
         // },false)
     }
 
+    function changeTime() {
+        //设置时间
+        let timer = setInterval(() => {
+            // say.currentTime  当前的播放时间
+            let t = parseInt(say.currentTime);
+            timeBox.innerHTML = `00:${t < 10 ? '0' + t : t}`
+            if (say.ended) {
+                clearInterval(timer)
+                //说完：
+                phoneBox.style.transform = 'translateY(110%)'
+                chatBoxFn()
+                bgm.play()
+            }
+        }, 1000);
+        return function () {
+            clearInterval(timer)
+        }
+    }
 }
 
 function chatBoxFn() {

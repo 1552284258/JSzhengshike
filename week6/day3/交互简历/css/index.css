@@ -24,7 +24,7 @@ body > section {
 html section.loadingBox,
 body section.loadingBox {
   background: #333;
-  transition: opacity 1s 1s;
+  transition: opacity 1s;
   z-index: 30;
   text-align: center;
   color: #fff;

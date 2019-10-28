@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            list-style: none;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            background: red;
+            transform: skew(45deg);
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="box">
+
+    </div>
+
+
+
+
+
+
+
+
+    <!-- 
+        css3  transition  animation (@keyframs)
+              transform   translate  rotate(旋转)  skew(倾斜)  scale(放大缩小)  persp
+              perspective:1000px; 井深
+              transform-style:preserve-3d;
+
+        H5  header footer  main nav section article ...
+            input 做了增强 : color date  
+
+        
+     -->
+
+    <input type="text" id="inp">
+    <ul id="list" style="display: none;">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+</body>
+
+</html>
+<script>
+    inp.onfocus = function (e) {
+        list.style.display = 'block'
+    }
+    inp.onblur = function (e) {
+        setTimeout(() => {
+            list.style.display = 'none'
+        }, 200)
+    }
+    list.onclick = function () {
+        if (e.traget.nodeName.toLowerCase() == 'li') {
+            inp.value = e.target.innerText
+        }
+
+    }
+
+
+
+
+</script>
