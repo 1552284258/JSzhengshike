@@ -2,14 +2,10 @@ let slideBox = document.querySelector('#slideBox')
 
 function getData(url, cb) {
     let xhr = new XMLHttpRequest;
-    // xhr.open('get', './data/banner.json', true);
     xhr.open('get', url, true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && /200|304/.test(xhr.status)) {
             let data = JSON.parse(xhr.response)
-            // console.log(data)
-            // render(data)
-            // swiperInit()
             cb && cb(data);//cb存在 并且 执行
         }
     }
@@ -71,7 +67,6 @@ function render(ary) {
             </div>`
     })
     slideBox.innerHTML = str;
-
 }
 
 function swiperInit() {
