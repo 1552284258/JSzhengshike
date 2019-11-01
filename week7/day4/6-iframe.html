@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        a{
+            text-decoration: none;
+        }
+        nav{
+            width: 100%;
+        }
+        #iframeBox{
+            width:100%;
+            height:600px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="http://baidu.com" target="iframeBox">百度</a>
+        <a href="http://jd.com" target="iframeBox">京东</a>
+        <a href="http://taobao.com" target="iframeBox">淘宝</a>
+    </nav>
+    
+    <iframe src="http://baidu.com" frameborder="0" id="iframeBox" name="iframeBox"></iframe>
+</body>
+</html>

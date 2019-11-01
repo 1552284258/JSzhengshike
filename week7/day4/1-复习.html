@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+        onabord 打断   ontime  超时
+        setRequestHeader() //参数不能是中文  content-type x-www
+        getRequestHeader()  获取
+        send(post请求体 只能是字符串)
+    */
+
+    /* 
+    
+    */
+
+
+    /* 
+        全局配置
+        axios.defau
+
+        请求拦截器
+        请求
+
+        axios.get(url,{params:{a:12,b:13}})
+        axios.post(url,{a:12,b:13})
+        asiox({
+            method:
+            params:{}  //针对get
+            data:{}    //针对post
+            headers:{}
+        })
+
+
+        let http = axios.create({
+            headers:{}
+            baseURL:
+            requestTransform(){}
+            timeout:
+        })
+    */
+
+
+    let p1 = new Promise(function(res,rej){
+        setTimeout(() => {
+            res(666)
+            console.log('3s')
+        }, 3000);
+    })
+    async function qqq(){
+        console.log(111)
+        let p = await p1;
+        console.log(p)
+    }
+    qqq()//111   3s   666
+</script>
