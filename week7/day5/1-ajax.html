@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+/*     let xhr = new XMLHttpRequest();
+    //get head(只要响应头)  delete;  post options(询问-post方法JSON格式可能会遇到) put..
+    xhr.open(type,url,async)
+        //ontimeout        onabort
+        //timeout = 2000   abort()
+    xhr.onreadystatechange=function(){
+        //readyState 0 1 2 3 4 
+        //status  200  301  302  304(走缓存)  307 403 403 405 5XX
+        if(xhr.readyState == 4){
+            if(/2\d{2}|304/.test(xhr.status)){
+
+            }else if(/[45]\d{2}/.test(xhr.status)){
+
+            }
+        }
+    }
+    xhr.send(JSON.stringify(data)) */
+
+    //websocket
+    //wss://docs.qq.com/socket.io/?gtag=main_page_p.24092244&EIO=3&transport=websocket
+
+    //socket.io  它是 websocket的一个封装好的库；
+    let ws = new WebSocket('wss://docs.qq.com/socket.io/?gtag=main_page_p.24092244&EIO=3&transport=websocket')
+    ws.onopen=function(){
+        //链接打通的时候
+    }
+    ws.onmessage=function(){
+        //前端接受到后端推送的消息
+        console.log(1234)
+    }
+    ws.onerror=function(){
+        //链接出现错误
+    }
+    ws.onclose=function(){
+        //链接被关闭的时候
+    }
+    // ws.send({a:123})
+    // ws.close()
+</script>

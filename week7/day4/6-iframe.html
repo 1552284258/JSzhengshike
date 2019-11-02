@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,25 +8,35 @@
     <title>Document</title>
 
     <style>
-        a{
+        a {
             text-decoration: none;
         }
-        nav{
+
+        #iframeBox {
             width: 100%;
-        }
-        #iframeBox{
-            width:100%;
-            height:600px;
+            height: 600px;
+            border: 1px solid #ccc;
         }
     </style>
 </head>
+
 <body>
-    <nav>
+    <!-- <nav>
         <a href="http://baidu.com" target="iframeBox">百度</a>
         <a href="http://jd.com" target="iframeBox">京东</a>
         <a href="http://taobao.com" target="iframeBox">淘宝</a>
-    </nav>
-    
-    <iframe src="http://baidu.com" frameborder="0" id="iframeBox" name="iframeBox"></iframe>
+    </nav> -->
+    <h1>iframe页面</h1>
+    <iframe src="./5-跨域.html" frameborder="0" id="iframeBox" name="iframeBox"></iframe>
+    <button id="btn">点击</button>
 </body>
+
 </html>
+<script>
+    let iframe = document.querySelector('#iframeBox')
+    console.dir(iframe)
+    btn.onclick = function () {
+        iframe.contentWindow.postMessage('{a:12,b:21}', 'http://127.0.0.1:5500')
+    }
+
+</script>
