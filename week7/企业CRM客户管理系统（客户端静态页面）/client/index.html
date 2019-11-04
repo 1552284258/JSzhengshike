@@ -31,10 +31,11 @@
 	<header class="headerBox">
 		<h1 class="logo">CRM客户管理系统</h1>
 		<nav class="navBox">
-			<a href="">组织结构</a>
-			<a href="">客户管理</a>
+			<a href="#">组织结构</a>
+			<a href="#customer">客户管理</a>
 		</nav>
 		<div class="baseBox">
+			<!-- 从本地存储中获取用户名展示到这个位置 -->
 			<span>您好：珠峰培训</span>
 			<a href="javascript:;">安全退出</a>
 		</div>
@@ -44,14 +45,14 @@
 	<main class="container">
 		<!-- MENU -->
 		<div class="menuBox">
-			<div class="itemBox">
+			<!-- <div class="itemBox">
 				<h3>
 					<i class="iconfont icon-yuangong"></i>
 					员工管理
 				</h3>
 				<nav class="item">
-					<a href="">员工列表</a>
-					<a href="">新增员工</a>
+					<a href="./page/userlist.html" target="iframeBox">员工列表</a>
+					<a href="./page/useradd.html" target="iframeBox">新增员工</a>
 				</nav>
 			</div>
 			<div class="itemBox">
@@ -60,8 +61,8 @@
 					部门管理
 				</h3>
 				<nav class="item">
-					<a href="">部门列表</a>
-					<a href="">新增部门</a>
+					<a href="./page/departmentlist.html" target="iframeBox">部门列表</a>
+					<a href="./page/departmentadd.html" target="iframeBox">新增部门</a>
 				</nav>
 			</div>
 			<div class="itemBox">
@@ -70,8 +71,8 @@
 					职务管理
 				</h3>
 				<nav class="item">
-					<a href="">职务列表</a>
-					<a href="">新增职务</a>
+					<a href="./page/joblist.html" target="iframeBox">职务列表</a>
+					<a href="./page/jobadd.html" target="iframeBox">新增职务</a>
 				</nav>
 			</div>
 			<div class="itemBox">
@@ -80,15 +81,15 @@
 					客户管理
 				</h3>
 				<nav class="item">
-					<a href="">我的客户</a>
-					<a href="">全部客户</a>
-					<a href="">新增客户</a>
+					<a href="./page/customerlist.html" target="iframeBox">我的客户</a>
+					<a href="./page/customerlist.html" target="iframeBox">全部客户</a>
+					<a href="./page/customeradd.html" target="iframeBox">新增客户</a>
 				</nav>
-			</div>
+			</div> -->
 		</div>
 
 		<!-- IFRAME -->
-		<iframe src="" class="iframeBox"></iframe>
+		<iframe src="" class="iframeBox" name="iframeBox"></iframe>
 	</main>
 
 	<!-- FOOTER -->
@@ -102,3 +103,8 @@
 </body>
 
 </html>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/utils.js"></script>
+<script src="./js/axios.min.js"></script>
+<script src="./js/axios.defaults.js"></script>
+<script src="./js/index.js"></script>
