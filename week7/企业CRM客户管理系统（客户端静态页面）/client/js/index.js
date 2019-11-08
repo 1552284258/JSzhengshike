@@ -5,6 +5,7 @@ $(function () {
         $menuBox = $('.menuBox'),//菜单盒子
         $as = $menuBox.find('a')
 
+
     //从本地获取用户名
     $nameBox.html('您好：' + localStorage.getItem('username'))
 
@@ -43,24 +44,36 @@ $(function () {
         hash();
     })
 
-    function hash() {
-        let $tar = $menuBox.find('.itemBox:last-child')
-        if(location.hash == '#customer'){
-            // 当前要展示客户管理
-            $tar.show().siblings('.itemBox').hide();
-            let url = $tar.find('a').eq(0).attr('href');
-            $iframe.attr('src',url)
-        }else{
-            $tar.hide().siblings('.itemBox').show()
-            $as = $menuBox.find('a');// 渲染完成之后再去更新变量
-            let url = $as.eq(0).attr('href')
-            $iframe.attr('src',url);// 跳转到第一个url
+        function hash() {
+            let $tar = $menuBox.find('.itemBox:last-child')
+            if (location.hash == '#customer') {
+                // 当前要展示客户管理
+                $tar.show().siblings('.itemBox').hide();
+                let current = sessionStorage.getItem('customerUrl')
+                if (current) {
+                    $iframe.attr('src', current)
+                } else {
+                    let url = $tar.find('a').eq(0).attr('href');
+                    $iframe.attr('src', url)
+                }
+
+            } else {
+                $tar.hide().siblings('.itemBox').show()
+                $as = $menuBox.find('a');// 渲染完成之后再去更新变量
+
+                let current = sessionStorage.getItem('currentUrl')
+                if (current) {
+                    $iframe.attr('src', current);
+                } else {
+                    let url = $as.eq(0).attr('href')
+                    $iframe.attr('src', url);// 跳转到第一个url
+                }
+
+            }
         }
-    }
-    
-    
+
     //监听hash的改变 去判断显示客户管理还是组织结构
-    window.addEventListener('hashchange',hash)
+    window.addEventListener('hashchange', hash)
 
     //权限分配  
     function role() {
@@ -114,12 +127,12 @@ $(function () {
                             客户管理
                         </h3>
                         <nav class="item">
-                            <a href="./page/customerlist.html" target='iframeBox'>我的客户</a>
-            ${
+                            <a href="./page/customerlist.html#my" target='iframeBox'>我的客户</a>
+                ${
             power.indexOf('allcustomer') != -1 ?
-                `<a href="./page/customerlist.html" target='iframeBox'>全部客户</a>` : ''
+                `<a href="./page/customerlist.html?_a=asfdf#all" target='iframeBox'>全部客户</a>` : ''
             }
-            ${
+                ${
             power.indexOf('departcustomer') != -1 ?
                 `<a href="./page/customeradd.html" target='iframeBox'>新增客户</a>` : ''
             }
@@ -132,6 +145,15 @@ $(function () {
     let url = $as.eq(0).attr('href')
     $iframe.attr('src', url) // 跳转到第一个url
 
+    //实现导航栏的折叠效果
+
+    function foldFn() {
+        let $h3s = $('.itemBox h3')
+        $h3s.on('click', function () {
+            $(this).siblings('.item').slideToggle('fast')
+        })
+    }
+    foldFn()
 
 
 })
