@@ -42,7 +42,7 @@ http.createServer((req, res) => {
     // res.statusCode = 404; //给前端的状态码
     // res.statusMessage='hello hahh'  //给前端的状态文本
 
-}).listen(1111, () => {
+}).listen(8000, () => {
     //服务启动成功之后会执行该函数
-    console.log('服务启动成功  端口是1111')
+    console.log('服务启动成功  端口是8000')
 })
