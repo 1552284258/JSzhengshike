@@ -12,61 +12,60 @@
 
 </html>
 <script>
-    let p = new Promise(function (res, rej) {
 
+function MyPromise(executor) {
+    let self = this // 使用self变量把 this这个当前实例 保存起来
+    self.value = undefined  //存储了成功执行时的 传进来的值
+    self.reason = undefined  //存储了失败执行时的 传进来的值
+    self.status = 'pending'; //pending resolved rejected
+    self.resCallback = [] //用来存放成功的回调
+    self.rejCallback = [] //用来存放失败的回调
+    function resolve(value) {
+        if (self.status == 'pending') {
+            //状态只能从pending变成其他态
+            self.status = 'resolved' //把状态置成 成功态
+            self.value = value
+            self.resCallback.forEach(item => {
+                item(self.value)
+            })
+        }
+    }
+    function reject(reason) {
+        if (self.status == 'pending') {
+            self.status = 'rejected' //把状态置成 失败态
+            self.reason = reason
+            self.rejCallback.forEach(item => {
+                item(self.reason)
+            })
+        }
+    }
+    try {
+        executor(resolve, reject)
+    } catch (error) {
+        reject(error)
+    }
+}
+
+MyPromise.prototype.then = function (res, rej) {
+    let self = this
+    return new MyPromise(function (res, rej) {
+        //需要判断到底让res执行还是rej执行
+        if (self.status == 'resolved') {
+            res(self.value)
+        }
+        if (self.status == 'rejected') {
+            rej(self.reason)
+        }
+        if (self.status == 'pending') {
+            self.resCallback.push(res)
+            self.rejCallback.push(rej)
+        }
     })
 
-    function MyPromise(executor) {
-        let self = this // 使用self变量把 this这个当前实例 保存起来
-        self.value = undefined  //存储了成功执行时的 传进来的值
-        self.reason = undefined  //存储了失败执行时的 传进来的值
-        self.status = 'pending'; //pending resolved rejected
-        self.resCallback = [] //用来存放成功的回调
-        self.rejCallback = [] //用来存放失败的回调
-        function resolve(value) {
-            if (self.status == 'pending') {
-                //状态只能从pending变成其他态
-                self.status = 'resolved' //把状态置成 成功态
-                self.value = value
-                self.resCallback.forEach(item => {
-                    item(self.value)
-                })
-            }
-        }
-        function reject(reason) {
-            if (self.status == 'pending') {
-                self.status = 'rejected' //把状态置成 失败态
-                self.reason = reason
-                self.rejCallback.forEach(item => {
-                    item(self.reason)
-                })
-            }
-        }
-        try {
-            executor(resolve, reject)
-        } catch (error) {
-            reject(error)
-        }
-    }
+}
 
-    MyPromise.prototype.then = function (res, rej) {
-        let self = this
 
-        return new MyPromise(function (res, rej) {
-            //需要判断到底让res执行还是rej执行
-            if (self.status == 'resolved') {
-                res(self.value)
-            }
-            if (self.status == 'rejected') {
-                rej(self.reason)
-            }
-            if (self.status == 'pending') {
-                self.resCallback.push(res)
-                self.rejCallback.push(rej)
-            }
-        })
 
-    }
 
     let myp = new MyPromise(function (res, rej) {
         // res(2333)
