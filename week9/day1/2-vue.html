@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        框架   库
+            框架：你写代码，框架帮你调用
+            库：  人家写好的代码，你来调用
+
+        渐进式 vue  vue-router  vuex  axios
+            vue的UI组件库： ele  iview  vant
+
+     -->
+    <div id="app">
+        <!-- 
+             小胡子语法
+             里边只能写表达式  不能写语句
+          -->
+        <h1>{{qqq}} {{www}} {{eee}} {{rrr}} {{bbb}}</h1>
+        <h2>{{qqq + www}}</h2>
+    </div>
+    <div id="app2">
+        <h1>{{qqq}}</h1>
+    </div>
+</body>
+
+</html>
+<script>
+    new Vue({
+        // el:'#app',// 不能是 body 和 html 
+        // template:`<div>这是个指定模板{{qqq}}</div>`,
+        data: {
+            //data 中的属性  就是vue的变量
+            qqq: 'hello',
+            www: 'word',
+            eee: 'I',
+            rrr: 'am',
+            bbb: 'batman'
+        }
+    }).$mount('#app2')
+
+// 同时有el 和 template时，走template，没有时走el，
+// 同时有el 和 .$mount() 时，先走el，没有el走$mount()
+</script>

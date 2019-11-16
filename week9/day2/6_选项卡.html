@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style: none;
+        }
+
+        ul li,
+        .box {
+            border: 1px solid red;
+            box-sizing: border-box;
+            user-select: none;
+            text-align: center;
+        }
+
+        ul li {
+            display: inline-block;
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            cursor: pointer;
+        }
+
+        .box {
+            width: 400px;
+            height: 300px;
+            line-height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for='(val,index) in ary' @click='change(index)'>{{val}}</li>
+        </ul>
+        <div class="box">{{body[qqq]}}</div>
+        <!-- <div class="box" v-for='(val,index) in body' v-show='qqq==index'>{{val}}</div> -->
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰",
+            ary: ['js', 'css', 'html', 'vue'],
+            body: ['js学的好', 'css学的好', 'html学的好', 'vue学的好'],
+            qqq: 0
+        },
+        methods: {
+            change(n) {
+                this.qqq = n
+            }
+        }
+    })
+</script>

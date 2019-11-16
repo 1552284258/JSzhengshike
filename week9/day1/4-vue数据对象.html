@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    [v-cloak]{
+        display: none;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <h1>{{name}}</h1>
+        {{obj}}
+        <span style="display: none;">{{t}}</span>
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    /* 
+        我们改变vue中的数据，能触发视图更新，前提是该数据有 set 和 get
+        若没有get和set 更改数据是不会触发视图的更新 ，但是 数据是改了的
+        给对象新增属性时，vue不会触发视图的更新
+            -解决方法： 一开始就在data中写上对应的属性(值写undefined)
+            -       ： 整个对象都替换，替换后的对象中的每一个属性，都会被监听
+            -       :  通过vm.$set(对象，属性名，属性值)
+            -       :  初始时，创建一个无关变量，再新增对象的属性时，我们可以去更新刚才的无关变量
+        不兼容IE8
+        
+    */
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            //data中的属性，最终都是挂载到了 当前的这个实力身上
+            name: "珠峰",
+            obj: {
+                a: 12,
+                c: undefined
+            },
+            t: 0
+        }
+    })
+    // vm.obj = Object.assign(vm.obj,{b:123});//返回值是合并后的原有对象
+    //1.使用深拷贝，返回一个新的地址
+    //2.更换两个参数的位置
+
+    // vm.obj = Object.assign({b:123},vm.obj)
+
+    // vm.$set(vm.obj,'b',1234567)
+
+    vm.obj.b = {ss:444}
+    vm.t= Math.random()
+
+</script>

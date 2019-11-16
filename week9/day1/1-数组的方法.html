@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+/* 
+    改变原有数组
+    push pop unshift shift reverse splice sort
+
+    循环            返回值是true false 的
+    (forEach map) filter some every find reduce include flat
+
+
+*/
+    var ary = [100,200,300,400,500,600,700,800,900]
+    var arr = ary.filter(item=>{
+        return item > 3
+        //过滤大于3的 放到新数组
+    })
+
+    //some  只要有一个回调函数返回值是true 结果就是true  后边的回调就不再执行
+    //every 只要有一个回调函数返回值是false 结果就是false 后边的回调不再执行
+
+    let res = ary.reduce(function(prev,next){
+        // 若第一次执行回调函数时，prev是reduce的第二个，
+        //若不存在第二个参数，则prev就是数组是第一项，next就是好数组的第二项
+        //再后边的回调，prev 就是上一个回调的返回值，next就是当前项
+        //reduce的执行结果 就是最后一个回调函数的返回值
+        
+        // console.log(arguments)
+        return 666
+    },10)
+
+    // let t = ary.reduce((prev,next)=>prev+next)
+    // console.log(t);//求和 这个是 4500
+
+    ary = [{a:10},{a:20},{a:30},{a:40}]
+    // let t = ary.reduce((prev,next)=>prev+next.a,0)
+
+    let res2 = ary.find((item,index)=>{
+        //回调函数返回true 则就把当前的这一项返给res2，后边的回调函数不再执行
+        //返回都是false  则给 res2 一个 undefined
+        console.log(6)
+        return item.a == 30
+    })
+ 
+    //以上方法都属于 声明式写法 --> 别人规定好的，直接用 forEach
+    //              编程式写法 -->                    for 循环
+</script>
