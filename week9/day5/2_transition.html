@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+    <!-- <style>
+        .v-enter {
+            opacity: 0;
+            transform: translateX(200px);
+        }
+
+        .v-enter-active {
+            transition: all 0.5s;
+        }
+
+        .v-enter-to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .v-leave {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .v-leave-active {
+            transition: all 0.5s;
+        }
+
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(200px);
+        }
+
+        h1 {
+            width: 500px;
+        }
+
+        h2 {
+            background: #ccc;
+            text-align: center;
+        }
+
+        .qqq-enter {
+            opacity: 0;
+            transform: scale(0.2);
+        }
+
+        .qqq-enter-active {
+            transition: all 0.5s;
+        }
+
+        .qqq-enter-to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style> -->
+
+    <style>
+        h2 {
+            background: #ccc;
+            text-align: center;
+        }
+        h3 {
+            background: #ccc;
+            text-align: center;
+        }
+
+        .my-enter-active {
+            animation: move 1s;
+        }
+
+        .my-leave-active {
+            /* reverse 动画相反  100%——>0% */
+            animation: move 1s reverse;
+        }
+
+        @keyframes move {
+            0% {
+                opacity: 0;
+                transform: scale(0.2);
+            }
+
+            50% {
+                transform: scale(1.5);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button @click='fn'>按钮</button>
+        <!-- 帧动画 -->
+        <!-- <transition>
+            <h2 name='my' v-if='flag' >{{name}}</h2>
+        </transition> -->
+
+        <!-- 结合 animate.css 使用 -->
+
+        <!-- <transition enter-active-class='animated rubberBand' leave-active-class='animated bounceOut'>
+            <h2 v-if='flag' name='myanimation'>{{name}}</h2>
+        </transition> -->
+
+        <transition
+            name='my' enter-active-class='animated bounceIn'
+            leave-active-class='animated bounceOut'
+            mode='out-in'
+        >
+            <!-- mode='out-in' 是控制 先消失 再显示 -->
+            <h2 v-if='flag' key=1>{{name}}</h2>
+            <h2 v-else key=2>{{name}}{{name}}</h2>
+        </transition>
+    </div>
+
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰",
+            flag: true,
+            qqq: ''
+        },
+        methods: {
+            fn() {
+                this.flag = !this.flag
+            }
+        },
+    })
+</script>

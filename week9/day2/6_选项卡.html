@@ -7,44 +7,65 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            text-decoration: none;
-            list-style: none;
+        header {
+            width: 400px;
+            height: 50px;
+            line-height: 50px;
+            display: flex;
         }
 
-        ul li,
-        .box {
-            border: 1px solid red;
-            box-sizing: border-box;
-            user-select: none;
+        header span {
+            flex: 1;
+            border: 1px solid salmon;
             text-align: center;
         }
 
-        ul li {
-            display: inline-block;
-            width: 100px;
-            height: 40px;
-            line-height: 40px;
-            cursor: pointer;
+        header span.current {
+            background: salmon;
         }
 
-        .box {
+        main div {
             width: 400px;
-            height: 300px;
-            line-height: 300px;
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+            background: salmon;
+            color: #fff;
         }
     </style>
 </head>
 
 <body>
     <div id="app">
-        <ul>
-            <li v-for='(val,index) in ary' @click='change(index)'>{{val}}</li>
-        </ul>
-        <div class="box">{{body[qqq]}}</div>
-        <!-- <div class="box" v-for='(val,index) in body' v-show='qqq==index'>{{val}}</div> -->
+        <h1>{{name}}</h1>
+        <header>
+            <span v-for='(item,index) in ary' @click='change(index)' :class='{current:qqq==index}'>
+                {{item}}
+            </span>
+        </header>
+        <main>
+            <div>
+                {{body[qqq]}}
+            </div>
+            <!-- <div v-for='(item,index) in body' v-show='index === qqq'>
+                {{item}}
+            </div> -->
+            <!-- 
+
+                <div v-show='0 === qqq'>
+                    {{item}}
+                </div>
+                <div v-show='1 === qqq'>
+                    {{item}}
+                </div>
+                <div v-show='2 === qqq'>
+                    {{item}}
+                </div>
+                <div v-show='3 === qqq'>
+                    {{item}}
+                </div>
+             -->
+        </main>
     </div>
 </body>
 
@@ -56,13 +77,14 @@
         data: {
             name: "珠峰",
             ary: ['js', 'css', 'html', 'vue'],
-            body: ['js学的好', 'css学的好', 'html学的好', 'vue学的好'],
-            qqq: 0
+            body: ["JS学的好", "css学的好", "html好", "vue更好"],
+            qqq: 0,
         },
         methods: {
             change(n) {
-                this.qqq = n
+                console.log(n);
+                this.qqq = n;
             }
-        }
-    })
+        },
+    });
 </script>
