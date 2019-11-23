@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tabBox {
+            display: flex;
+            width: 1000px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            margin: auto;
+            background: #eee;
+        }
+
+        .tabBox li {
+            flex: 1;
+            border: 1px solid deeppink;
+            max-width: 100px;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .tabBox li span {
+            float: right;
+        }
+
+        .tabBox .current {
+            background: salmon
+        }
+
+        .tabBox .addLi {
+            user-select: none;
+            cursor: pointer;
+            border: 1px solid red;
+            max-width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <my-tab :data='ary' v-model='aaa' @change='fn' @tab-remove='tabRm' @add='addFn'></my-tab>
+    </div>
+</body>
+
+<template id="mytab">
+    <ul class='tabBox'>
+        <li v-for='(item,index) in data' :class='{current:index === qqq}' @click.stop='tabFn(index,item)'>
+            {{item}}
+            <span @click.stop='delFn(index)'>X</span>
+        </li>
+        <li class="addLi" @click='addFn'>+</li>
+    </ul>
+</template>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+
+    Vue.component('my-tab', {
+        template: '#mytab',
+        props: ['data'],
+        data() {
+            return {
+                qqq: 0
+            }
+        },
+        methods: {
+            tabFn(n, str) {
+                this.qqq = n
+                this.$emit('change', n, str)
+            },
+            delFn(n) {
+                // this.data=[]
+                // this.data.splice(n,1) // 在子组件直接修改父组件的数据
+                this.$emit('tab-remove', n)
+            },
+            addFn() {
+                this.$emit('add', 'New tab')
+            }
+        },
+    })
+
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰",
+            ary: ['css', 'html', 'js', 'vue', 'node'],
+            index=0
+        },
+        methods: {
+            fn(n, item) {
+                console.log(n, item)
+            },
+            tabRm(n) {
+                this.ary.splice(n, 1)
+            },
+            addFn(n) {
+                this.ary.push(n)
+            }
+        },
+    })
+</script>

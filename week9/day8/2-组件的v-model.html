@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .inpBox {
+            width: 500px;
+            height: 50px;
+        }
+
+        .inpBox input {
+            width: 300px;
+            height: 50px;
+            line-height: 50px;
+            outline: none;
+            border-radius: 15px;
+            font-size: 25px;
+            padding-left: 20px;
+            border: 1px solid deeppink;
+        }
+
+        .inpBox input:focus {
+            border-color: rgb(115, 174, 211);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <my-input placeholder="请输入内容" v-model='name'></my-input>
+        <h1>{{name}}</h1>
+    </div>
+</body>
+
+<template id="myInput">
+    <div class="inpBox">
+        <input type="text" :value="value" @input='$emit("input",$event.target.value)' :placeholder="placeholder">
+        <!-- v-model='name' 拆成两部分 :value='name' @input='(val)=>name=val' -->
+        <!-- <input type="text" :value='name' @input='(val)=>name=val' :placeholder="placeholder"> -->
+    </div>
+</template>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.component('my-input', {
+        template: '#myInput',
+        props: ['placeholder', 'value']
+    })
+
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰"
+        }
+    })
+</script>
