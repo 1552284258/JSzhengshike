@@ -38,7 +38,6 @@ let vm = new Vue({
                 this.ary.splice(index, 1)
             }
         },
-
     },
     created() {
         this.hash = location.hash || '#/all';

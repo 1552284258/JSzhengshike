@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <h1>{{name}}</h1> -->
+        <h2>{{$store.state.count}}</h2>
+        <my-btn></my-btn>
+    </div>
+</body>
+
+<template id="myBtn">
+    <div>
+        <!-- <h3>{{$store.state.count}}</h3>--> 
+        <!-- <h2>{{myn}}</!--> 
+        <!-- <h2>{{myn2}}</h2>
+        <h2>{{myn3}}</h2> -->
+        <!-- <button @click='add'>+</button> -->
+        <!-- <button @click='minus'>-</button> -->
+        <input type="text" >
+    </div>
+</template>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script src="../node_modules/vuex/dist/vuex.js"></script>
+<script>
+    let store = new Vuex.Store({
+        state: {
+            //存放公用数据
+            count: 0,
+            name: 'zf',
+            age: 10,
+        },
+
+        mutations: {
+            //存储的都是用来改变state中的状态的方法
+            //我们需要通过 $store.commit 这个方法来触发对应的函数
+            change(state, option) {
+                console.log(arguments)
+                state.count += option.n
+            }
+        }
+    })
+
+    Vue.component('my-btn', {
+        template: '#myBtn',
+        data() {
+            return {
+                myn: this.$store.state.count
+            }
+        },
+        computed: {
+            qqq: function () {
+                return this.$store.state.count + '原始'
+            },
+            // /* myn2() {
+            //     //我们一般都是使用 计算属性 去接收 vuex中的数据
+            //     return this.$store.state.count
+            // } */
+
+            // //Vuex.mapState 是 Vuex提供的辅助函数，返回值是一个对象
+            ...Vuex.mapState({
+                myn2: state => state.count = "mapStore + 改名",
+                myn3: (state) => { return state.count + 100 }
+            }),
+
+            ...Vuex.mapState(['count'])
+        },
+        methods: {
+            add() {
+                //this.$store.commit(mutations中的方法名称,传过去的参数，一般是一个对象)
+                this.$store.commit('change', { n: 1 })
+            },
+            minus() {
+                this.$store.commit('change', { n: -1 })
+            },
+        },
+    })
+
+    let vm = new Vue({
+        el: '#app',
+        store,  //注入完成之后，每一个后代组件身上都会有一个$store属性
+        data: {
+
+        },
+
+    })
+</script>

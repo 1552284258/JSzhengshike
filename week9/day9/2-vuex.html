@@ -11,6 +11,7 @@
 <body>
     <div id="app">
         <h1>{{name}}</h1>
+        <h2>{{$store.state.count}}</h2>
     </div>
 </body>
 
@@ -20,7 +21,7 @@
 <script>
     //vuex 就是为了解决组件之间的数据交互
     let store = new Vuex.Store({
-        store: {
+        state: {
             count: 0,
         },
         mutations: {
@@ -30,11 +31,26 @@
             }
         }
     })
+
+    //Vue.use
+    let obj ={
+        //若use 传进去的是一个对象，则会执行里边的install方法
+        install(_Vue){
+            console.log(_Vue);
+        }
+    }
+    let fn = function(_Vue){
+        //若use 传进来的是一个函数，则会直接当做install方法执行
+        console.log('fn',_Vue);
+    }
+    Vue.use(obj)
+    Vue.use(fn)
+
     let vm = new Vue({
         el: '#app',
         data: {
             name: "珠峰"
         },
-        store,  //store:store,
+        store,   //store:store,
     })
 </script>
