@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+            <inp v-model='value' @add='fn'></inp>
+        <h1>{{name}}</h1>
+        <h2>{{value}}</h2>
+       
+    </div>
+</body>
+
+<template id="inp">
+    <div>
+        <input type="text" v-model='v1' @input='add'>
+        <input type="text" v-model='v2' @input='add'>
+    </div>
+</template>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+
+    let inp = {
+        template: '#inp',
+        props: ['value'],
+        data() {
+            return {
+                v1: '',
+                v2: ''
+            }
+        },
+        methods: {
+            add() {
+                this.$emit('add', this.v1, this.v2);
+            }
+        },
+    }
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰",
+            value: '',
+        },
+        components: {
+            inp
+        },
+        methods: {
+            fn(n, m) {
+                this.value = n + ' ' + m
+            }
+        }
+    })
+</script>
