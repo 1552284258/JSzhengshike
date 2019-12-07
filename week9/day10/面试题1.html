@@ -10,7 +10,7 @@
 
 <body>
     <div id="app">
-            <inp v-model='value' @add='fn'></inp>
+        <inp v-model='value' @add='fn'></inp>
         <h1>{{name}}</h1>
         <h2>{{value}}</h2>
        
@@ -27,7 +27,6 @@
 </html>
 <script src="../node_modules/vue/dist/vue.js"></script>
 <script>
-
     let inp = {
         template: '#inp',
         props: ['value'],

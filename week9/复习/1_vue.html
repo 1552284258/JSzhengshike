@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<style>
+ [v-cloak]{display: none;}
+</style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <h1>{{name}}</h1>
+
+    </div>
+</body>
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    /* 
+        el
+        template
+        data 根实例是个对象  其他组件都是函数
+        methods:{不能写箭头函数}  
+        computed：{qq(){};qq:{get,set}}
+        watch:{已经存在的变量}
+        filters:{}  私有过滤器   Vue.filter(名字,函数)全局的
+        directives:{}  私有自定义指令    Vue.directive(名字,函数)全局的
+        components:{}  动态组件
+        mixins:{}  私有混入   Vue.mixin({})全局的
+
+
+        钩子函数
+        beforeCreate    created  渲染之前
+        beforeMount     mounted  拿走编译
+        beforUpdate     updated  出发视图更新
+        beforeDestroy   destroyed  组件销毁的时候
+
+        activated   deactivated  <keep-alive></keepalive>让组件保持存活
+        
+        props 接收父组件数据的属性  简写是一个数组
+        props:{type default required validator}
+
+        render:(h)=>{return h('div',{attrs:{}},标签内容)}
+                标签内容可以是一段文本，也可以是一个新的虚拟DOM 也可以是多个虚拟DOM
+                多个虚拟DOM 用数组包起来即可
+
+        
+    */
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            name:"珠峰"
+        },
+    watch: {
+        name(newV,oldV){},
+        name:{
+            //一般是用来监听对象类型的
+            immediate:true,//上来先执行一次
+            deep:true,
+            handler(newV,oldV){
+
+            }
+        },
+        
+    },
+    })
+</script>

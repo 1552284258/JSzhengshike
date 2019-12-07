@@ -79,6 +79,7 @@ function swiperInit() {
         autoplay: true
     });
 }
+
 let scrT = document.documentElement.scrollTop;//卷去的高度
 let wH = document.documentElement.clientHeight || document.body.clientHeight;//当前屏幕的高度
 let tarT = document.body.clientHeight //body 的高度
@@ -92,12 +93,8 @@ function move() {
             renderList(data)
             console.log(111)
         })
-
-    }
-    
+    } 
 }
-
-
 window.onscroll = function () {
     move()
 }
